@@ -205,6 +205,23 @@
     .service-price { font-size: 1rem; font-weight: 700; color: var(--teal); display: block; }
     .service-price-old { font-size: .72rem; color: var(--text-light); text-decoration: line-through; }
 
+    /* Mental health card full-width */
+    .mental-health-card {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #f0f4ff 0%, #e8f6fb 100%);
+      border-color: #c8d8f8;
+    }
+    .mental-health-card::after { background: linear-gradient(90deg, #4a6cf7, var(--blue)); }
+    .mh-grid {
+      display: flex; gap: 0; margin-top: 16px;
+      background: white; border-radius: 12px; overflow: hidden;
+      border: 1px solid #dde6f8;
+    }
+    .mh-col { flex: 1; padding: 14px 16px; }
+    .mh-divider { width: 1px; background: #dde6f8; flex-shrink: 0; }
+    .mh-col-title { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-light); margin-bottom: 8px; }
+    .mh-point { font-size: .82rem; color: var(--text); margin-bottom: 5px;}
+
     /* Pricing highlight card */
     .pricing-banner {
       margin-top: 28px;
@@ -467,7 +484,7 @@
           Your health guide,<br>wherever you are
         </h1>
         <p class="hero-sub">
-          Reproductive health, maternal &amp; child care, family planning, and chronic disease support — all from your phone. No travel needed.
+          Reproductive health, maternal &amp; child care, family planning, and chronic disease support, all from your phone. No travel needed.
         </p>
         <div class="hero-actions">
           <a href="#booking" class="btn-primary">
@@ -493,7 +510,7 @@
             <div class="hero-card-icon">🌸</div>
             <div>
               <div class="hero-card-label">Speciality</div>
-              <div class="hero-card-value">Reproductive Health</div>
+              <div class="hero-card-value">Public Health</div>
             </div>
           </div>
           <div class="hero-card2">
@@ -521,7 +538,7 @@
         <div class="service-title">Reproductive & Sexual Health</div>
         <p class="service-desc">Confidential consultations on sexual health concerns, STI awareness, menstrual issues, and reproductive wellness for women and couples.</p>
         <div class="service-meta">
-          <span class="service-duration"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Varies</span>
+          <span class="service-duration"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 15 min</span>
           <div class="service-price-wrap"><span class="service-price">From ₦5,000</span></div>
         </div>
       </div>
@@ -531,7 +548,7 @@
         <div class="service-title">Antenatal & Postnatal Guidance</div>
         <p class="service-desc">Expert support through pregnancy and the postpartum period — from birth preparation to newborn care and breastfeeding guidance.</p>
         <div class="service-meta">
-          <span class="service-duration"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Varies</span>
+          <span class="service-duration"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 15 min</span>
           <div class="service-price-wrap"><span class="service-price">From ₦5,000</span></div>
         </div>
       </div>
@@ -541,7 +558,7 @@
         <div class="service-title">Family Planning</div>
         <p class="service-desc">Non-judgmental guidance on contraception options, family spacing, and fertility awareness to help you make informed decisions for your family.</p>
         <div class="service-meta">
-          <span class="service-duration"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Varies</span>
+          <span class="service-duration"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 15 min</span>
           <div class="service-price-wrap"><span class="service-price">From ₦5,000</span></div>
         </div>
       </div>
@@ -551,7 +568,7 @@
         <div class="service-title">Chronic Disease Management</div>
         <p class="service-desc">Ongoing support for managing hypertension and diabetes — understanding your condition, medications, lifestyle changes, and monitoring strategies.</p>
         <div class="service-meta">
-          <span class="service-duration"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 15–45 min</span>
+          <span class="service-duration"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 15 min</span>
           <div class="service-price-wrap"><span class="service-price">From ₦5,000</span></div>
         </div>
       </div>
@@ -561,7 +578,7 @@
         <div class="service-title">Nutrition & Lifestyle Counselling</div>
         <p class="service-desc">Practical, culturally relevant nutrition advice and lifestyle coaching to support your health goals during pregnancy, postpartum, or everyday living.</p>
         <div class="service-meta">
-          <span class="service-duration"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Varies</span>
+          <span class="service-duration"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 15 min</span>
           <div class="service-price-wrap"><span class="service-price">From ₦5,000</span></div>
         </div>
       </div>
@@ -571,8 +588,50 @@
         <div class="service-title">Health Education Sessions</div>
         <p class="service-desc">Group or individual sessions on health topics that matter to your community — tailored, clear, and easy to understand for everyday Nigerians.</p>
         <div class="service-meta">
-          <span class="service-duration"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 30 min+</span>
-          <div class="service-price-wrap"><span class="service-price">From ₦15,000</span></div>
+          <span class="service-duration"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 15 min</span>
+          <div class="service-price-wrap"><span class="service-price">From ₦5,000</span></div>
+        </div>
+      </div>
+
+      <!-- MENTAL HEALTH CARD — spans full width -->
+      <div class="service-card mental-health-card reveal" style="transition-delay:.28s">
+        <div style="display:flex; align-items:flex-start; gap:16px; flex-wrap:wrap;">
+          <div>
+            <div class="service-icon" style="background: linear-gradient(135deg,#e8eeff,#ddf0fb); font-size:1.5rem; margin-bottom:0;">🧠</div>
+          </div>
+          <div style="flex:1; min-width:200px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+              <div class="service-title" style="margin-bottom:0;">Mind Clarity Sessions</div>
+              <span style="background:#e8eeff; color:#4a6cf7; font-size:.7rem; font-weight:700; padding:3px 10px; border-radius:20px; white-space:nowrap;">NEW</span>
+            </div>
+            <p class="service-desc" style="margin-bottom:14px;">
+              Feeling overwhelmed, confused, or emotionally stuck? These are safe, supportive conversations to help you <strong>clear confusion, understand your thoughts, release emotional pressure</strong>, and make confident decisions. <em>Find clarity. Release your mind. Move forward.</em>
+            </p>
+          </div>
+        </div>
+
+        <div class="mh-grid">
+          <div class="mh-col">
+            <div class="mh-col-title">✅ What to expect</div>
+            <div class="mh-point">💬 Speak freely in a safe space</div>
+            <div class="mh-point">🎧 Be heard &amp; understood</div>
+            <div class="mh-point">💡 Gain clarity &amp; insight</div>
+            <div class="mh-point">🧭 Leave with direction</div>
+          </div>
+          <div class="mh-divider"></div>
+          <div class="mh-col">
+            <div class="mh-col-title" style="color:var(--teal);">✔ It is</div>
+            <div class="mh-point">Supportive conversations</div>
+            <div class="mh-point">Personal growth guidance</div>
+            <div class="mh-col-title" style="color:#c0392b; margin-top:10px;">✘ It is not</div>
+            <div class="mh-point" style="color:var(--text-light);">Clinical therapy</div>
+            <div class="mh-point" style="color:var(--text-light);">Medical treatment</div>
+          </div>
+        </div>
+
+        <div class="service-meta" style="margin-top:16px;">
+          <span class="service-duration"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Per session</span>
+          <div class="service-price-wrap"><span class="service-price">Ask on WhatsApp</span></div>
         </div>
       </div>
     </div>
@@ -595,10 +654,10 @@
       </div>
       <div class="pricing-tier">
         <div class="pricing-tier-name">Health Education (Group)</div>
-        <div class="pricing-tier-price">₦15,000+</div>
+        <div class="pricing-tier-price">₦12,000</div>
         <div class="pricing-tier-old">₦45,000</div>
-        <div style="font-size:.78rem; opacity:.75; margin-top:6px;">💰 Save ₦30,000+ (67% off)</div>
-        <div class="pricing-tier-detail">30 min · Group sessions</div>
+        <div style="font-size:.78rem; opacity:.75; margin-top:6px;">💰 Save ₦33,000 (73% off)</div>
+        <div class="pricing-tier-detail">3 sessions · Best value</div>
       </div>
     </div>
 
@@ -696,7 +755,7 @@
             <option value="Family Planning Consultation">Family Planning – from ₦5,000</option>
             <option value="Chronic Disease Management (Hypertension/Diabetes)">Chronic Disease Management – from ₦5,000</option>
             <option value="Nutrition & Lifestyle Counselling">Nutrition &amp; Lifestyle Counselling – from ₦5,000</option>
-            <option value="Health Education Session (Group)">Health Education Session – from ₦15,000</option>
+            <option value="Health Education Session (Group)">Health Education Session – from ₦5,000</option>
             <option value="General Health Q&A">General Health Q&amp;A</option>
           </select>
         </div>
@@ -960,7 +1019,7 @@
       'Family Planning Consultation': 5000,
       'Chronic Disease Management (Hypertension/Diabetes)': 5000,
       'Nutrition & Lifestyle Counselling': 5000,
-      'Health Education Session (Group)': 15000,
+      'Health Education Session (Group)': 12000,
       'General Health Q&A': 5000
     };
 
