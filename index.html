@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nurse Hassanat – Reproductive & Maternal Health Consultations Online</title>
+  <meta name="description" content="Virtual nursing consultations with Nurse Hassanat – reproductive health, antenatal/postnatal guidance, family planning, chronic disease management and more. Available nationwide from Ilorin, Nigeria." />
+  <meta name="keywords" content="telenursing Nigeria, virtual nurse Nigeria, reproductive health nurse, maternal health Nigeria, family planning nurse Ilorin, online health consultation Nigeria" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --mint:        #e6f4ee;
+      --mint-mid:    #c0dfd0;
+      --teal:        #2f9e7e;
+      --teal-dark:   #1f7a5e;
+      --sky:         #daeef8;
+      --blue:        #3f8cb5;
+      --white:       #ffffff;
+      --off-white:   #f6fbf8;
+      --text:        #162820;
+      --text-light:  #537066;
+      --wa-green:    #25D366;
+      --wa-dark:     #128C7E;
+      --radius:      16px;
+      --shadow-soft: 0 4px 28px rgba(47,158,126,.10);
+      --shadow-card: 0 2px 14px rgba(22,40,32,.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+
+    /* ── UTILITY ── */
+    .container { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    .section-label {
+      display: inline-block; font-size: .72rem; font-weight: 600;
+      letter-spacing: .13em; text-transform: uppercase;
+      color: var(--teal); background: var(--mint);
+      padding: 4px 14px; border-radius: 20px; margin-bottom: 14px;
+    }
+    h2.section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.7rem, 4vw, 2.35rem);
+      color: var(--text); line-height: 1.2; margin-bottom: 14px;
+    }
+    .section-sub { font-size: 1rem; color: var(--text-light); line-height: 1.68; max-width: 540px; }
+    section { padding: 72px 0; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(255,255,255,.93); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--mint-mid);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-mark {
+      width: 38px; height: 38px; border-radius: 12px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--blue) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Serif Display', serif; color: white; font-size: 1rem;
+    }
+    .nav-logo-text { font-weight: 600; color: var(--text); font-size: .93rem; line-height: 1.25; }
+    .nav-logo-text span { display: block; font-weight: 300; font-size: .76rem; color: var(--text-light); }
+    .nav-links { display: none; gap: 24px; }
+    @media (min-width: 680px) { .nav-links { display: flex; } }
+    .nav-links a { text-decoration: none; font-size: .84rem; font-weight: 500; color: var(--text-light); transition: color .2s; }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-cta {
+      background: var(--teal); color: white; border: none; cursor: pointer;
+      padding: 9px 20px; border-radius: 30px;
+      font-family: 'DM Sans', sans-serif; font-size: .875rem; font-weight: 600;
+      text-decoration: none; transition: background .2s, transform .15s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--teal-dark); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    #hero {
+      background: linear-gradient(155deg, var(--off-white) 0%, var(--sky) 50%, var(--mint) 100%);
+      padding: 52px 0 60px; overflow: hidden; position: relative;
+    }
+    #hero::before {
+      content: ''; position: absolute; top: -100px; right: -100px;
+      width: 420px; height: 420px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(47,158,126,.1), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center;
+    }
+    @media (min-width: 720px) { .hero-inner { grid-template-columns: 1fr 1fr; gap: 52px; } }
+    .hero-text { order: 2; }
+    @media (min-width: 720px) { .hero-text { order: 1; } }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: white; border: 1px solid var(--mint-mid); border-radius: 30px;
+      padding: 6px 14px 6px 8px; font-size: .78rem; font-weight: 500; color: var(--teal-dark);
+      margin-bottom: 22px; box-shadow: 0 2px 10px rgba(47,158,126,.1);
+    }
+    .hero-badge-dot {
+      width: 8px; height: 8px; background: var(--teal); border-radius: 50%;
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.45; transform:scale(1.45); } }
+
+    .hero-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.95rem, 5.5vw, 3rem);
+      line-height: 1.15; color: var(--text); margin-bottom: 18px;
+    }
+    .hero-headline em { font-style: italic; color: var(--teal); }
+    .hero-sub { font-size: 1.05rem; color: var(--text-light); line-height: 1.72; margin-bottom: 32px; max-width: 430px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--teal); color: white; text-decoration: none;
+      padding: 13px 26px; border-radius: 30px; font-weight: 600; font-size: .97rem;
+      font-family: 'DM Sans', sans-serif;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 4px 18px rgba(47,158,126,.35); border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 7px 24px rgba(47,158,126,.45); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: white; color: var(--teal); text-decoration: none;
+      padding: 12px 22px; border-radius: 30px; font-weight: 600; font-size: .9rem;
+      border: 1.5px solid var(--mint-mid); transition: border-color .2s, transform .15s;
+    }
+    .btn-ghost:hover { border-color: var(--teal); transform: translateY(-1px); }
+
+    .hero-trust { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 30px; }
+    .trust-item { display: flex; align-items: center; gap: 7px; font-size: .8rem; color: var(--text-light); }
+    .trust-icon {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: white; display: flex; align-items: center; justify-content: center;
+      box-shadow: var(--shadow-card); font-size: .88rem;
+    }
+
+    /* Hero visual */
+    .hero-visual { order: 1; display: flex; justify-content: center; }
+    @media (min-width: 720px) { .hero-visual { order: 2; } }
+    .hero-photo-wrap { position: relative; width: 100%; max-width: 360px; }
+    .hero-photo-bg {
+      position: absolute; inset: -14px;
+      background: linear-gradient(135deg, var(--mint-mid), var(--sky));
+      border-radius: 58% 42% 52% 48% / 44% 54% 46% 56%; z-index: 0;
+    }
+    .hero-photo {
+      position: relative; z-index: 1; width: 100%; aspect-ratio: 3/4;
+      border-radius: 42% 58% 48% 52% / 40% 42% 58% 60%;
+      background: linear-gradient(160deg, #a8d8c0 0%, #85b8d0 100%);
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-card {
+      position: absolute; bottom: 18px; left: -18px; z-index: 2;
+      background: white; border-radius: var(--radius); padding: 11px 15px;
+      box-shadow: 0 8px 28px rgba(22,40,32,.14); display: flex; align-items: center; gap: 10px; min-width: 170px;
+    }
+    .hero-card-icon { width: 34px; height: 34px; border-radius: 10px; background: var(--mint); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .hero-card-label { font-size: .68rem; color: var(--text-light); font-weight: 500; }
+    .hero-card-value { font-size: .9rem; font-weight: 700; color: var(--text); }
+    .hero-card2 {
+      position: absolute; top: 22px; right: -14px; z-index: 2;
+      background: var(--teal); color: white; border-radius: var(--radius);
+      padding: 12px 16px; box-shadow: 0 8px 22px rgba(47,158,126,.4); text-align: center; min-width: 96px;
+    }
+    .hero-card2-num { font-size: 1.55rem; font-family: 'DM Serif Display', serif; line-height: 1; }
+    .hero-card2-label { font-size: .68rem; opacity: .85; font-weight: 500; margin-top: 3px; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--white); }
+    .services-grid {
+      display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 40px;
+    }
+    @media (min-width: 560px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 860px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .service-card {
+      background: var(--off-white); border: 1.5px solid var(--mint-mid);
+      border-radius: 20px; padding: 26px 22px;
+      transition: transform .22s, box-shadow .22s, border-color .22s;
+      position: relative; overflow: hidden; display: flex; flex-direction: column;
+    }
+    .service-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--blue));
+      transform: scaleX(0); transform-origin: left; transition: transform .32s ease;
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: 0 14px 34px rgba(47,158,126,.13); border-color: var(--mint-mid); }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-icon { width: 50px; height: 50px; border-radius: 14px; background: linear-gradient(135deg, var(--mint), var(--sky)); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 16px; }
+    .service-title { font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
+    .service-desc { font-size: .855rem; color: var(--text-light); line-height: 1.6; margin-bottom: 16px; flex: 1; }
+    .service-meta { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--mint-mid); padding-top: 13px; }
+    .service-duration { font-size: .78rem; color: var(--text-light); display: flex; align-items: center; gap: 4px; }
+    .service-price-wrap { text-align: right; }
+    .service-price { font-size: 1rem; font-weight: 700; color: var(--teal); display: block; }
+    .service-price-old { font-size: .72rem; color: var(--text-light); text-decoration: line-through; }
+
+    /* Pricing highlight card */
+    .pricing-banner {
+      margin-top: 28px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--blue) 100%);
+      border-radius: 20px; padding: 28px 30px; color: white;
+      display: grid; grid-template-columns: 1fr; gap: 20px;
+    }
+    @media (min-width: 600px) { .pricing-banner { grid-template-columns: repeat(3, 1fr); } }
+    .pricing-tier { text-align: center; }
+    .pricing-tier + .pricing-tier { border-top: 1px solid rgba(255,255,255,.15); padding-top: 16px; }
+    @media (min-width: 600px) {
+      .pricing-tier + .pricing-tier { border-top: none; border-left: 1px solid rgba(255,255,255,.15); padding-top: 0; }
+    }
+    .pricing-tier-name { font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; opacity: .75; margin-bottom: 6px; }
+    .pricing-tier-price { font-family: 'DM Serif Display', serif; font-size: 1.9rem; line-height: 1; }
+    .pricing-tier-old { font-size: .75rem; opacity: .55; text-decoration: line-through; margin: 2px 0 4px; }
+    .pricing-tier-detail { font-size: .8rem; opacity: .8; }
+
+    .consult-strip {
+      margin-top: 22px; background: var(--mint); border-radius: 14px;
+      padding: 18px 22px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .consult-strip-text { font-size: .88rem; color: var(--text); font-weight: 500; }
+    .consult-types { display: flex; gap: 8px; flex-wrap: wrap; }
+    .consult-pill { background: white; border-radius: 20px; padding: 5px 13px; font-size: .79rem; font-weight: 500; color: var(--teal-dark); display: flex; align-items: center; gap: 5px; }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: var(--off-white); padding: 60px 0; }
+    .testi-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 36px; }
+    @media (min-width: 640px) { .testi-grid { grid-template-columns: repeat(3, 1fr); } }
+    .testi-card {
+      background: white; border-radius: 20px; padding: 24px 22px;
+      box-shadow: var(--shadow-card); border: 1px solid var(--mint-mid);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .testi-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(47,158,126,.1); }
+    .testi-stars { color: #f5a623; font-size: 1rem; margin-bottom: 12px; letter-spacing: 2px; }
+    .testi-text { font-size: .9rem; color: var(--text-light); line-height: 1.68; margin-bottom: 16px; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 10px; }
+    .testi-avatar {
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--mint-mid), var(--sky));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .85rem; color: var(--teal-dark);
+    }
+    .testi-name { font-weight: 600; font-size: .85rem; }
+    .testi-loc { font-size: .75rem; color: var(--text-light); }
+
+    /* ── BOOKING ── */
+    #booking { background: linear-gradient(160deg, var(--off-white), var(--mint)); }
+    .booking-inner { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: start; }
+    @media (min-width: 720px) { .booking-inner { grid-template-columns: 1fr 1fr; } }
+
+    .booking-form-wrap {
+      background: white; border-radius: 24px; padding: 32px;
+      box-shadow: var(--shadow-soft);
+    }
+    .form-title { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 6px; }
+    .form-sub { font-size: .855rem; color: var(--text-light); margin-bottom: 22px; }
+    .form-field { margin-bottom: 15px; }
+    .form-field label { display: block; font-size: .8rem; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+    .form-field input,
+    .form-field select {
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid var(--mint-mid); border-radius: 10px;
+      font-family: 'DM Sans', sans-serif; font-size: .915rem; color: var(--text);
+      background: var(--off-white); transition: border-color .2s, box-shadow .2s; outline: none;
+    }
+    .form-field input:focus,
+    .form-field select:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(47,158,126,.12); background: white; }
+    .form-field select { cursor: pointer; }
+    .form-submit {
+      width: 100%; padding: 14px; background: var(--wa-green); color: white;
+      border: none; cursor: pointer; border-radius: 30px;
+      font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: background .2s, transform .15s; margin-top: 6px;
+    }
+    .form-submit:hover { background: var(--wa-dark); transform: translateY(-1px); }
+
+    .booking-info { display: flex; flex-direction: column; gap: 16px; }
+    .wa-booking-btn {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: var(--wa-green); color: white; text-decoration: none; border-radius: 30px;
+      padding: 14px 22px; font-weight: 700; font-size: .97rem;
+      box-shadow: 0 4px 18px rgba(37,211,102,.3); transition: background .2s, transform .15s;
+    }
+    .wa-booking-btn:hover { background: var(--wa-dark); transform: translateY(-2px); }
+
+    .info-card {
+      background: white; border-radius: 15px; padding: 18px 20px;
+      box-shadow: var(--shadow-card); display: flex; gap: 13px; align-items: flex-start;
+    }
+    .info-card-icon { width: 38px; height: 38px; border-radius: 11px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.05rem; }
+    .info-card-icon.green { background: #e4f9ef; }
+    .info-card-icon.blue  { background: var(--sky); }
+    .info-card-icon.amber { background: #fff6e0; }
+    .info-card-icon.purple { background: #f0ecff; }
+    .info-card-title { font-weight: 700; font-size: .88rem; margin-bottom: 3px; }
+    .info-card-text { font-size: .82rem; color: var(--text-light); line-height: 1.55; }
+
+    /* Payment box */
+    .payment-box {
+      background: var(--mint); border: 1.5px solid var(--mint-mid);
+      border-radius: 14px; padding: 16px 20px;
+    }
+    .payment-box-title { font-weight: 700; font-size: .88rem; margin-bottom: 10px; display: flex; align-items: center; gap: 7px; }
+    .payment-row { display: flex; justify-content: space-between; font-size: .82rem; margin-bottom: 5px; color: var(--text-light); }
+    .payment-row span:last-child { font-weight: 600; color: var(--text); }
+
+    /* ── FAQ ── */
+    #faq { background: var(--white); }
+    .faq-list { margin-top: 36px; display: flex; flex-direction: column; gap: 12px; max-width: 700px; }
+    .faq-item {
+      background: var(--off-white); border: 1.5px solid var(--mint-mid);
+      border-radius: 14px; overflow: hidden;
+    }
+    .faq-q {
+      width: 100%; text-align: left; background: none; border: none; cursor: pointer;
+      padding: 18px 20px; font-family: 'DM Sans', sans-serif; font-size: .93rem;
+      font-weight: 600; color: var(--text); display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    }
+    .faq-q:hover { color: var(--teal); }
+    .faq-chevron { font-size: .75rem; color: var(--teal); transition: transform .25s; flex-shrink: 0; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease, padding .3s ease; }
+    .faq-item.open .faq-a { max-height: 200px; }
+    .faq-a-inner { padding: 0 20px 18px; font-size: .875rem; color: var(--text-light); line-height: 1.65; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--off-white); }
+    .about-inner { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
+    @media (min-width: 720px) { .about-inner { grid-template-columns: 1fr 1.35fr; } }
+    .about-photo-wrap { position: relative; }
+    .about-photo {
+      width: 100%; max-width: 320px; margin: 0 auto; aspect-ratio: 1;
+      border-radius: 28px; background: linear-gradient(135deg, var(--mint), var(--sky));
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+      box-shadow: 0 12px 40px rgba(47,158,126,.18);
+    }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .about-badge {
+      position: absolute; bottom: -8px; right: 0;
+      background: white; border-radius: 14px; padding: 11px 15px;
+      box-shadow: var(--shadow-soft); display: flex; align-items: center; gap: 10px;
+    }
+    .badge-icon { font-size: 1.35rem; }
+    .badge-text-label { font-size: .68rem; color: var(--text-light); font-weight: 500; }
+    .badge-text-val { font-size: .86rem; font-weight: 700; color: var(--text); }
+    .about-bio { font-size: .975rem; line-height: 1.76; color: var(--text-light); margin-bottom: 18px; }
+    .about-bio strong { color: var(--text); }
+    .specialty-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+    .specialty-tag {
+      background: var(--mint); color: var(--teal-dark); border-radius: 20px;
+      padding: 5px 14px; font-size: .78rem; font-weight: 600;
+    }
+    .creds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+    .cred-item {
+      display: flex; align-items: center; gap: 8px;
+      background: white; border: 1px solid var(--mint-mid); border-radius: 11px; padding: 9px 12px;
+    }
+    .cred-icon { font-size: .95rem; }
+    .cred-text { font-size: .79rem; font-weight: 600; color: var(--text); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--text); color: rgba(255,255,255,.82); padding: 44px 0 28px; }
+    .footer-top {
+      display: grid; grid-template-columns: 1fr; gap: 28px; margin-bottom: 32px;
+      padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    @media (min-width: 640px) { .footer-top { grid-template-columns: 1.5fr 1fr 1fr; } }
+    .footer-brand { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: white; margin-bottom: 8px; }
+    .footer-sub { font-size: .8rem; opacity: .55; line-height: 1.55; }
+    .footer-col-title { font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; opacity: .45; margin-bottom: 12px; }
+    .footer-col-item { font-size: .82rem; margin-bottom: 7px; opacity: .65; display: flex; align-items: center; gap: 7px; }
+    .footer-col-item a { color: inherit; text-decoration: none; }
+    .footer-col-item a:hover { opacity: 1; color: var(--mint); }
+    .footer-wa {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 4px;
+      background: var(--wa-green); color: white; text-decoration: none;
+      padding: 9px 18px; border-radius: 30px; font-size: .85rem; font-weight: 600;
+      transition: background .2s;
+    }
+    .footer-wa:hover { background: var(--wa-dark); }
+    .footer-bottom {
+      display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: flex-start;
+    }
+    .footer-disclaimer {
+      font-size: .76rem; opacity: .38; max-width: 480px; line-height: 1.55;
+      background: rgba(255,255,255,.04); border-radius: 10px; padding: 10px 14px;
+      border-left: 3px solid rgba(255,100,100,.3);
+    }
+    .footer-copy { font-size: .72rem; opacity: .28; }
+
+    /* ── FLOATING WA ── */
+    .wa-float {
+      position: fixed; bottom: 22px; right: 18px; z-index: 300;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--wa-green); box-shadow: 0 4px 20px rgba(37,211,102,.45);
+      display: flex; align-items: center; justify-content: center; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      animation: floatIn .6s .5s both;
+    }
+    @keyframes floatIn { from { opacity:0; transform:scale(.4) translateY(20px); } to { opacity:1; transform:scale(1); } }
+    .wa-float:hover { transform: scale(1.09) translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,.55); }
+    .wa-float-tooltip {
+      position: absolute; right: 66px; top: 50%; transform: translateY(-50%);
+      background: var(--text); color: white; padding: 6px 12px; border-radius: 8px;
+      font-size: .77rem; font-weight: 500; white-space: nowrap; pointer-events: none;
+      opacity: 0; transition: opacity .2s;
+    }
+    .wa-float-tooltip::after {
+      content: ''; position: absolute; right: -6px; top: 50%; transform: translateY(-50%);
+      border: 5px solid transparent; border-right: none; border-left-color: var(--text);
+    }
+    .wa-float:hover .wa-float-tooltip { opacity: 1; }
+
+    /* ── WAVE ── */
+    .wave-divider { display: block; width: 100%; overflow: hidden; line-height: 0; }
+    .wave-divider svg { display: block; width: 100%; }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .52s ease, transform .52s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <div class="nav-logo-mark">H</div>
+        <div class="nav-logo-text">Nurse Hassanat <span>Virtual Health Consultations</span></div>
+      </a>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#booking">Book</a>
+        <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a href="#booking" class="nav-cta">Book Now</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+
+      <div class="hero-text reveal">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Available nationwide · Fully virtual
+        </div>
+        <h1 class="hero-headline">
+          Hi, I'm <em>Nurse Hassanat.</em><br>
+          Your health guide,<br>wherever you are
+        </h1>
+        <p class="hero-sub">
+          Reproductive health, maternal &amp; child care, family planning, and chronic disease support — all from your phone. No travel needed.
+        </p>
+        <div class="hero-actions">
+          <a href="#booking" class="btn-primary">
+            <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Book a Consultation
+          </a>
+          <a href="#services" class="btn-ghost">See services</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item"><div class="trust-icon">🏅</div> NMCN Licensed</div>
+          <div class="trust-item"><div class="trust-icon">📍</div> Ilorin, Nigeria</div>
+          <div class="trust-item"><div class="trust-icon">🌍</div> Nationwide online</div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal" style="transition-delay:.15s">
+        <div class="hero-photo-wrap">
+          <div class="hero-photo-bg"></div>
+          <div class="hero-photo">
+            <img src="hassana.png" alt="Nurse Hassanat" />
+          </div>
+          <div class="hero-card">
+            <div class="hero-card-icon">🌸</div>
+            <div>
+              <div class="hero-card-label">Speciality</div>
+              <div class="hero-card-value">Reproductive Health</div>
+            </div>
+          </div>
+          <div class="hero-card2">
+            <div class="hero-card2-num">4+</div>
+            <div class="hero-card2-label">Years exp.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">What I offer</span>
+      <h2 class="section-title">Care you can count on</h2>
+      <p class="section-sub">Comprehensive virtual nursing consultations — covering reproductive health, maternal care, family planning and more. Available to everyone in Nigeria.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal" style="transition-delay:.04s">
+        <div class="service-icon">🌸</div>
+        <div class="service-title">Reproductive & Sexual Health</div>
+        <p class="service-desc">Confidential consultations on sexual health concerns, STI awareness, menstrual issues, and reproductive wellness for women and couples.</p>
+        <div class="service-meta">
+          <span class="service-duration"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Varies</span>
+          <div class="service-price-wrap"><span class="service-price">From ₦5,000</span></div>
+        </div>
+      </div>
+
+      <div class="service-card reveal" style="transition-delay:.08s">
+        <div class="service-icon">🤱</div>
+        <div class="service-title">Antenatal & Postnatal Guidance</div>
+        <p class="service-desc">Expert support through pregnancy and the postpartum period — from birth preparation to newborn care and breastfeeding guidance.</p>
+        <div class="service-meta">
+          <span class="service-duration"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Varies</span>
+          <div class="service-price-wrap"><span class="service-price">From ₦5,000</span></div>
+        </div>
+      </div>
+
+      <div class="service-card reveal" style="transition-delay:.12s">
+        <div class="service-icon">🧬</div>
+        <div class="service-title">Family Planning</div>
+        <p class="service-desc">Non-judgmental guidance on contraception options, family spacing, and fertility awareness to help you make informed decisions for your family.</p>
+        <div class="service-meta">
+          <span class="service-duration"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Varies</span>
+          <div class="service-price-wrap"><span class="service-price">From ₦5,000</span></div>
+        </div>
+      </div>
+
+      <div class="service-card reveal" style="transition-delay:.16s">
+        <div class="service-icon">💊</div>
+        <div class="service-title">Chronic Disease Management</div>
+        <p class="service-desc">Ongoing support for managing hypertension and diabetes — understanding your condition, medications, lifestyle changes, and monitoring strategies.</p>
+        <div class="service-meta">
+          <span class="service-duration"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 15–45 min</span>
+          <div class="service-price-wrap"><span class="service-price">From ₦5,000</span></div>
+        </div>
+      </div>
+
+      <div class="service-card reveal" style="transition-delay:.20s">
+        <div class="service-icon">🥗</div>
+        <div class="service-title">Nutrition & Lifestyle Counselling</div>
+        <p class="service-desc">Practical, culturally relevant nutrition advice and lifestyle coaching to support your health goals during pregnancy, postpartum, or everyday living.</p>
+        <div class="service-meta">
+          <span class="service-duration"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Varies</span>
+          <div class="service-price-wrap"><span class="service-price">From ₦5,000</span></div>
+        </div>
+      </div>
+
+      <div class="service-card reveal" style="transition-delay:.24s">
+        <div class="service-icon">📚</div>
+        <div class="service-title">Health Education Sessions</div>
+        <p class="service-desc">Group or individual sessions on health topics that matter to your community — tailored, clear, and easy to understand for everyday Nigerians.</p>
+        <div class="service-meta">
+          <span class="service-duration"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 30 min+</span>
+          <div class="service-price-wrap"><span class="service-price">From ₦15,000</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing tiers -->
+    <div class="pricing-banner reveal" style="transition-delay:.1s; margin-top:28px">
+      <div class="pricing-tier">
+        <div class="pricing-tier-name">Quick Consultation</div>
+        <div class="pricing-tier-price">₦5,000</div>
+        <div class="pricing-tier-old">₦15,000</div>
+        <div style="font-size:.78rem; opacity:.75; margin-top:6px;">💰 Save ₦10,000 (67% off)</div>
+        <div class="pricing-tier-detail">15 minutes · Single session</div>
+      </div>
+      <div class="pricing-tier">
+        <div class="pricing-tier-name">Extended / Follow-up</div>
+        <div class="pricing-tier-price">₦12,000</div>
+        <div class="pricing-tier-old">₦45,000</div>
+        <div style="font-size:.78rem; opacity:.75; margin-top:6px;">💰 Save ₦33,000 (73% off)</div>
+        <div class="pricing-tier-detail">3 sessions · Best value</div>
+      </div>
+      <div class="pricing-tier">
+        <div class="pricing-tier-name">Health Education (Group)</div>
+        <div class="pricing-tier-price">₦15,000+</div>
+        <div class="pricing-tier-old">₦45,000</div>
+        <div style="font-size:.78rem; opacity:.75; margin-top:6px;">💰 Save ₦30,000+ (67% off)</div>
+        <div class="pricing-tier-detail">30 min · Group sessions</div>
+      </div>
+    </div>
+
+    <div class="consult-strip reveal" style="transition-delay:.15s">
+      <span class="consult-strip-text">📱 All sessions held via:</span>
+      <div class="consult-types">
+        <span class="consult-pill">💬 WhatsApp Chat</span>
+        <span class="consult-pill">🎥 WhatsApp / Zoom Video</span>
+        <span class="consult-pill">📞 Phone Call</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider" style="background:white">
+  <svg viewBox="0 0 1200 55" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0 0 Q300 55 600 28 Q900 0 1200 36 L1200 55 L0 55Z" fill="#f2faf6"/>
+  </svg>
+</div>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Client stories</span>
+      <h2 class="section-title">What people are saying</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal" style="transition-delay:.05s">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Nurse Hassanat explained my family planning options so clearly — no judgment, no rushing. I finally understood my choices. Would 100% recommend to any woman."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AK</div>
+          <div>
+            <div class="testi-name">Aisha K.</div>
+            <div class="testi-loc">Lagos, Nigeria</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:.1s">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"I was nervous about my postnatal recovery but Nurse Hassanat was so calm and thorough. She answered every question patiently. The virtual session felt just as good as in-person."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">FM</div>
+          <div>
+            <div class="testi-name">Fatima M.</div>
+            <div class="testi-loc">Abuja, Nigeria</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:.15s">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"She helped me understand my husband's diabetes better than our doctor ever did. She explains things in simple Yoruba-friendly English and actually cares. Very professional!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">RO</div>
+          <div>
+            <div class="testi-name">Rukayat O.</div>
+            <div class="testi-loc">Ibadan, Nigeria</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking" style="background: linear-gradient(160deg, #f2faf6, var(--mint));">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:40px">
+      <span class="section-label">Book a session</span>
+      <h2 class="section-title">Ready when you are</h2>
+      <p class="section-sub">Fill in the quick form below — your details will be sent straight to Nurse Hassanat on WhatsApp and she'll confirm your slot shortly.</p>
+    </div>
+
+    <div class="booking-inner">
+      <div class="booking-form-wrap reveal">
+        <div class="form-title">Quick Booking</div>
+        <p class="form-sub">Takes 30 seconds. Your message opens in WhatsApp automatically.</p>
+
+        <div class="form-field">
+          <label for="b-name">Your full name</label>
+          <input type="text" id="b-name" placeholder="e.g. Amina Bello" />
+        </div>
+        <div class="form-field">
+          <label for="b-phone">Your WhatsApp number</label>
+          <input type="tel" id="b-phone" placeholder="e.g. 08012345678" />
+        </div>
+        <div class="form-field">
+          <label for="b-service">Service you need</label>
+          <select id="b-service">
+            <option value="">Select a service…</option>
+            <option value="Reproductive & Sexual Health Consultation">Reproductive &amp; Sexual Health – from ₦5,000</option>
+            <option value="Antenatal / Postnatal Guidance">Antenatal / Postnatal Guidance – from ₦5,000</option>
+            <option value="Family Planning Consultation">Family Planning – from ₦5,000</option>
+            <option value="Chronic Disease Management (Hypertension/Diabetes)">Chronic Disease Management – from ₦5,000</option>
+            <option value="Nutrition & Lifestyle Counselling">Nutrition &amp; Lifestyle Counselling – from ₦5,000</option>
+            <option value="Health Education Session (Group)">Health Education Session – from ₦15,000</option>
+            <option value="General Health Q&A">General Health Q&amp;A</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="b-type">Preferred consultation type</label>
+          <select id="b-type">
+            <option value="">Select type…</option>
+            <option value="WhatsApp Chat">WhatsApp Chat</option>
+            <option value="WhatsApp Video Call">WhatsApp Video Call</option>
+            <option value="Zoom Video Call">Zoom Video Call</option>
+            <option value="Phone Call">Phone Call</option>
+          </select>
+        </div>
+
+        <button class="form-submit" onclick="sendToWhatsApp()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Send via WhatsApp
+        </button>
+      </div>
+
+      <div class="booking-info reveal" style="transition-delay:.1s">
+        <a href="https://wa.me/2347018824561?text=Hi%20Nurse%20Hassanat!%20I%27d%20like%20to%20book%20a%20consultation." target="_blank" class="wa-booking-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book now on WhatsApp · 0701 882 4561
+        </a>
+
+        <div class="info-card">
+          <div class="info-card-icon green">🕐</div>
+          <div>
+            <div class="info-card-title">Availability</div>
+            <div class="info-card-text">Mon – Fri: 9:00am – 2:00pm WAT<br>Sat – Sun: 4:00pm – 6:00pm WAT</div>
+          </div>
+        </div>
+
+        <div class="payment-box">
+          <div class="payment-box-title">💳 Payment Details</div>
+          <div class="payment-row"><span>Bank</span><span>GTBank</span></div>
+          <div class="payment-row"><span>Account No.</span><span>0463760762</span></div>
+          <div class="payment-row"><span>Name</span><span>Suleyman Hassan Hassanat</span></div>
+          <div style="margin-top:10px; font-size:.78rem; color:var(--text-light);">
+            💡 Bank transfer or Paystack accepted. Payment is required before your session.
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon amber">⚠️</div>
+          <div>
+            <div class="info-card-title">Cancellation Policy</div>
+            <div class="info-card-text">Cancel at least <strong>24 hours before</strong> your session, or your deposit will be forfeited.</div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon blue">🌍</div>
+          <div>
+            <div class="info-card-title">Available Nationwide</div>
+            <div class="info-card-text">Based in Ilorin, Kwara State. All sessions are fully virtual — book from anywhere in Nigeria.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Common questions</span>
+      <h2 class="section-title">Got questions? I've got answers.</h2>
+    </div>
+    <div class="faq-list reveal" style="transition-delay:.08s">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I book if I'm not in Ilorin?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Absolutely! All sessions are 100% online via WhatsApp, Zoom, or phone. You can book from anywhere in Nigeria — and even abroad.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What if I need a prescription?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Nurse Hassanat provides professional health guidance and education, not prescriptions. If you require medication or a diagnosis, she will refer you to an appropriate doctor. Your safety always comes first.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How do I pay?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Payment is via bank transfer to GTBank (0463760762 — Suleyman Hassan Hassanat) or via Paystack. Payment is required before your session begins.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What happens after I book?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Once you send your booking via WhatsApp, Nurse Hassanat will confirm your session time, share payment details, and send a reminder before your appointment.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is my consultation private and confidential?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Yes, completely. All consultations are strictly confidential. Your health information is never shared with third parties without your consent.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider" style="background:white">
+  <svg viewBox="0 0 1200 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0 30 Q300 0 600 25 Q900 50 1200 15 L1200 50 L0 50Z" fill="#f2faf6"/>
+  </svg>
+</div>
+
+<!-- ABOUT -->
+<section id="about" style="background:#f2faf6">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-photo-wrap reveal">
+        <div class="about-photo">
+          <img src="hassana1.png" alt="Nurse Hassanat Hassan Sulayman" />
+        </div>
+        <div class="about-badge">
+          <span class="badge-icon">🏅</span>
+          <div>
+            <div class="badge-text-label">Licensed Nurse</div>
+            <div class="badge-text-val">NMCN Registered</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" style="transition-delay:.1s">
+        <span class="section-label">About Nurse Hassanat</span>
+        <h2 class="section-title">Making health accessible to every Nigerian</h2>
+        <p class="about-bio">
+          Hi, I'm <strong>Nurse Hassanat Hassan Sulayman</strong> — a registered nurse with <strong>4+ years of experience</strong> in reproductive health, maternal &amp; child care, and public health. I'm based in Ilorin, Kwara State, and I work independently through telenursing.
+        </p>
+        <p class="about-bio">
+          What I love most about nursing is <strong>educating people and making health information accessible to everyday Nigerians</strong>. Health knowledge shouldn't be locked behind hospital walls — it should be available to every woman, every mother, every family. That's why I moved online.
+        </p>
+
+        <div class="specialty-tags">
+          <span class="specialty-tag">🌸 Reproductive Health</span>
+          <span class="specialty-tag">🌍 Public Health</span>
+          <span class="specialty-tag">🤱 Maternal &amp; Child Health</span>
+          <span class="specialty-tag">🧬 Family Planning</span>
+          <span class="specialty-tag">💊 Lifestyle Disease Prevention</span>
+        </div>
+
+        <div class="creds-grid">
+          <div class="cred-item"><span class="cred-icon">🏅</span><span class="cred-text">NMCN Registered</span></div>
+          <div class="cred-item"><span class="cred-icon">📍</span><span class="cred-text">Ilorin, Kwara State</span></div>
+          <div class="cred-item"><span class="cred-icon">⏱️</span><span class="cred-text">4+ Years Practice</span></div>
+          <div class="cred-item"><span class="cred-icon">💻</span><span class="cred-text">Telenursing Practice</span></div>
+          <div class="cred-item"><span class="cred-icon">🌍</span><span class="cred-text">Nationwide Available</span></div>
+          <div class="cred-item"><span class="cred-icon">🎓</span><span class="cred-text">Public Health Focus</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Nurse Hassanat</div>
+        <div class="footer-sub">Virtual health consultations for everyday Nigerians.<br>Ilorin, Kwara State · Available nationwide.</div>
+        <br>
+        <a href="https://wa.me/2347018824561" target="_blank" class="footer-wa">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp: 0701 882 4561
+        </a>
+      </div>
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <div class="footer-col-item"><a href="#services">Services &amp; Pricing</a></div>
+        <div class="footer-col-item"><a href="#booking">Book a Session</a></div>
+        <div class="footer-col-item"><a href="#about">About Nurse Hassanat</a></div>
+        <div class="footer-col-item"><a href="#faq">FAQs</a></div>
+      </div>
+      <div>
+        <div class="footer-col-title">Payment</div>
+        <div class="footer-col-item">🏦 GTBank</div>
+        <div class="footer-col-item">0463760762</div>
+        <div class="footer-col-item" style="font-size:.76rem; opacity:.5;">Suleyman Hassan Hassanat</div>
+        <div class="footer-col-item" style="margin-top:8px;">💳 Paystack also accepted</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-disclaimer">
+        ⚠️ <strong>Not for emergencies.</strong> This service provides health education and guidance only — not diagnosis or prescription. If you are experiencing a medical emergency, please go to your nearest hospital or emergency room immediately.
+      </div>
+      <div class="footer-copy">© 2025 Nurse Hassanat Hassan Sulayman</div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/2347018824561?text=Hi%20Nurse%20Hassanat!%20I%20saw%20your%20website%20and%20I%27d%20like%20to%20book%20a%20consultation."
+   target="_blank" class="wa-float" aria-label="Chat on WhatsApp">
+  <span class="wa-float-tooltip">Chat on WhatsApp</span>
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  // WhatsApp booking form
+  function sendToWhatsApp() {
+    const name    = document.getElementById('b-name').value.trim();
+    const phone   = document.getElementById('b-phone').value.trim();
+    const service = document.getElementById('b-service').value;
+    const type    = document.getElementById('b-type').value;
+
+    if (!name || !phone || !service || !type) {
+      alert('Please fill in all fields before sending.');
+      return;
+    }
+
+    const msg =
+      `Hi Nurse Hassanat! 👋\n\nI'd like to book a consultation.\n\n` +
+      `*Name:* ${name}\n` +
+      `*Phone:* ${phone}\n` +
+      `*Service:* ${service}\n` +
+      `*Consultation type:* ${type}\n\n` +
+      `Please let me know your available slots. Thank you! 🙏`;
+
+    window.open(`https://wa.me/2347018824561?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+
+  // FAQ accordion
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+    { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
+  );
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
