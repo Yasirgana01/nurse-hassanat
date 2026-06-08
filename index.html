@@ -49,6 +49,11 @@
     }
     .section-sub { font-size: 1rem; color: var(--text-light); line-height: 1.68; max-width: 540px; }
     section { padding: 72px 0; }
+    .ui-icon {
+      width: 1em; height: 1em; display: inline-block; flex-shrink: 0;
+      fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .ui-icon-fill { fill: currentColor; stroke: none; }
 
     /* ── NAV ── */
     nav {
@@ -60,10 +65,11 @@
     .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .nav-logo-mark {
       width: 38px; height: 38px; border-radius: 12px; flex-shrink: 0;
-      background: linear-gradient(135deg, var(--teal) 0%, var(--blue) 100%);
+      background: var(--white);
       display: flex; align-items: center; justify-content: center;
-      font-family: 'DM Serif Display', serif; color: white; font-size: 1rem;
+      overflow: hidden; box-shadow: 0 1px 6px rgba(22,40,32,.10);
     }
+    .nav-logo-mark img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .nav-logo-text { font-weight: 600; color: var(--text); font-size: .93rem; line-height: 1.25; }
     .nav-logo-text span { display: block; font-weight: 300; font-size: .76rem; color: var(--text-light); }
     .nav-links { display: none; gap: 24px; }
@@ -140,7 +146,7 @@
     .trust-icon {
       width: 28px; height: 28px; border-radius: 8px;
       background: white; display: flex; align-items: center; justify-content: center;
-      box-shadow: var(--shadow-card); font-size: .88rem;
+      box-shadow: var(--shadow-card); font-size: .95rem; color: var(--teal);
     }
 
     /* Hero visual */
@@ -164,7 +170,7 @@
       background: white; border-radius: var(--radius); padding: 11px 15px;
       box-shadow: 0 8px 28px rgba(22,40,32,.14); display: flex; align-items: center; gap: 10px; min-width: 170px;
     }
-    .hero-card-icon { width: 34px; height: 34px; border-radius: 10px; background: var(--mint); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .hero-card-icon { width: 34px; height: 34px; border-radius: 10px; background: var(--mint); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; color: var(--teal); }
     .hero-card-label { font-size: .68rem; color: var(--text-light); font-weight: 500; }
     .hero-card-value { font-size: .9rem; font-weight: 700; color: var(--text); }
     .hero-card2 {
@@ -196,7 +202,7 @@
     }
     .service-card:hover { transform: translateY(-5px); box-shadow: 0 14px 34px rgba(47,158,126,.13); border-color: var(--mint-mid); }
     .service-card:hover::after { transform: scaleX(1); }
-    .service-icon { width: 50px; height: 50px; border-radius: 14px; background: linear-gradient(135deg, var(--mint), var(--sky)); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 16px; }
+    .service-icon { width: 50px; height: 50px; border-radius: 14px; background: linear-gradient(135deg, var(--mint), var(--sky)); display: flex; align-items: center; justify-content: center; font-size: 1.35rem; margin-bottom: 16px; color: var(--teal-dark); }
     .service-title { font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
     .service-desc { font-size: .855rem; color: var(--text-light); line-height: 1.6; margin-bottom: 16px; flex: 1; }
     .service-meta { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--mint-mid); padding-top: 13px; }
@@ -220,7 +226,10 @@
     .mh-col { flex: 1; padding: 14px 16px; }
     .mh-divider { width: 1px; background: #dde6f8; flex-shrink: 0; }
     .mh-col-title { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-light); margin-bottom: 8px; }
-    .mh-point { font-size: .82rem; color: var(--text); margin-bottom: 5px;}
+    .mh-col-title { display: flex; align-items: center; gap: 6px; }
+    .mh-point { font-size: .82rem; color: var(--text); margin-bottom: 5px; display: flex; align-items: center; gap: 6px;}
+    .mh-point .ui-icon { color: var(--teal); }
+    .save-note { display: inline-flex; align-items: center; justify-content: center; gap: 5px; font-size:.78rem; opacity:.75; margin-top:6px; }
 
     /* Pricing highlight card */
     .pricing-banner {
@@ -244,7 +253,7 @@
       margin-top: 22px; background: var(--mint); border-radius: 14px;
       padding: 18px 22px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
     }
-    .consult-strip-text { font-size: .88rem; color: var(--text); font-weight: 500; }
+    .consult-strip-text { font-size: .88rem; color: var(--text); font-weight: 500; display: inline-flex; align-items: center; gap: 6px; }
     .consult-types { display: flex; gap: 8px; flex-wrap: wrap; }
     .consult-pill { background: white; border-radius: 20px; padding: 5px 13px; font-size: .79rem; font-weight: 500; color: var(--teal-dark); display: flex; align-items: center; gap: 5px; }
 
@@ -258,7 +267,7 @@
       transition: transform .2s, box-shadow .2s;
     }
     .testi-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(47,158,126,.1); }
-    .testi-stars { color: #f5a623; font-size: 1rem; margin-bottom: 12px; letter-spacing: 2px; }
+    .testi-stars { color: #f5a623; font-size: 1rem; margin-bottom: 12px; display: flex; gap: 2px; }
     .testi-text { font-size: .9rem; color: var(--text-light); line-height: 1.68; margin-bottom: 16px; font-style: italic; }
     .testi-author { display: flex; align-items: center; gap: 10px; }
     .testi-avatar {
@@ -315,7 +324,7 @@
       background: white; border-radius: 15px; padding: 18px 20px;
       box-shadow: var(--shadow-card); display: flex; gap: 13px; align-items: flex-start;
     }
-    .info-card-icon { width: 38px; height: 38px; border-radius: 11px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.05rem; }
+    .info-card-icon { width: 38px; height: 38px; border-radius: 11px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.05rem; color: var(--teal-dark); }
     .info-card-icon.green { background: #e4f9ef; }
     .info-card-icon.blue  { background: var(--sky); }
     .info-card-icon.amber { background: #fff6e0; }
@@ -368,7 +377,7 @@
       background: white; border-radius: 14px; padding: 11px 15px;
       box-shadow: var(--shadow-soft); display: flex; align-items: center; gap: 10px;
     }
-    .badge-icon { font-size: 1.35rem; }
+    .badge-icon { font-size: 1.35rem; color: var(--teal); display: flex; align-items: center; }
     .badge-text-label { font-size: .68rem; color: var(--text-light); font-weight: 500; }
     .badge-text-val { font-size: .86rem; font-weight: 700; color: var(--text); }
     .about-bio { font-size: .975rem; line-height: 1.76; color: var(--text-light); margin-bottom: 18px; }
@@ -377,13 +386,14 @@
     .specialty-tag {
       background: var(--mint); color: var(--teal-dark); border-radius: 20px;
       padding: 5px 14px; font-size: .78rem; font-weight: 600;
+      display: inline-flex; align-items: center; gap: 5px;
     }
     .creds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
     .cred-item {
       display: flex; align-items: center; gap: 8px;
       background: white; border: 1px solid var(--mint-mid); border-radius: 11px; padding: 9px 12px;
     }
-    .cred-icon { font-size: .95rem; }
+    .cred-icon { font-size: .95rem; color: var(--teal); display: flex; align-items: center; }
     .cred-text { font-size: .79rem; font-weight: 600; color: var(--text); }
 
     /* ── FOOTER ── */
@@ -455,7 +465,7 @@
   <div class="container">
     <div class="nav-inner">
       <a href="#hero" class="nav-logo">
-        <div class="nav-logo-mark">H</div>
+        <div class="nav-logo-mark"><img src="logo.jpeg" alt="Nurse Hassanat logo"></div>
         <div class="nav-logo-text">Nr. Hassan Hassanat <span>Virtual Health Consultations</span></div>
       </a>
       <nav class="nav-links">
@@ -494,9 +504,9 @@
           <a href="#services" class="btn-ghost">See services</a>
         </div>
         <div class="hero-trust">
-          <div class="trust-item"><div class="trust-icon">🏅</div> NMCN Licensed</div>
-          <div class="trust-item"><div class="trust-icon">📍</div> Nigeria</div>
-          <div class="trust-item"><div class="trust-icon">🌍</div> Worldwide online</div>
+          <div class="trust-item"><div class="trust-icon"><svg class="ui-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/></svg></div> NMCN Licensed</div>
+          <div class="trust-item"><div class="trust-icon"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div> Nigeria</div>
+          <div class="trust-item"><div class="trust-icon"><svg class="ui-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/></svg></div> Worldwide online</div>
         </div>
       </div>
 
@@ -504,10 +514,10 @@
         <div class="hero-photo-wrap">
           <div class="hero-photo-bg"></div>
           <div class="hero-photo">
-            <img src="/hassana.png" alt="Nurse Hassanat" />
+            <img src="hassana.png" alt="Nurse Hassanat" />
           </div>
           <div class="hero-card">
-            <div class="hero-card-icon">🌸</div>
+            <div class="hero-card-icon"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div>
             <div>
               <div class="hero-card-label">Speciality</div>
               <div class="hero-card-value">Public Health</div>
@@ -534,7 +544,7 @@
 
     <div class="services-grid">
       <div class="service-card reveal" style="transition-delay:.04s">
-        <div class="service-icon">🌸</div>
+        <div class="service-icon"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div>
         <div class="service-title">Reproductive & Sexual Health</div>
         <p class="service-desc">Confidential consultations on sexual health concerns, STI awareness, menstrual issues, and reproductive wellness for women and couples.</p>
         <div class="service-meta">
@@ -544,7 +554,7 @@
       </div>
 
       <div class="service-card reveal" style="transition-delay:.08s">
-        <div class="service-icon">🤱</div>
+        <div class="service-icon"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M8 3.13a4 4 0 0 0 0 7.75"/><path d="M12 14a4 4 0 0 0-4 4v3h8v-3a4 4 0 0 0-4-4Z"/><path d="M12 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg></div>
         <div class="service-title">Antenatal & Postnatal Guidance</div>
         <p class="service-desc">Expert support through pregnancy and the postpartum period, from birth preparation to newborn care and breastfeeding guidance.</p>
         <div class="service-meta">
@@ -554,7 +564,7 @@
       </div>
 
       <div class="service-card reveal" style="transition-delay:.12s">
-        <div class="service-icon">🧬</div>
+        <div class="service-icon"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M6 3c6 4 6 14 12 18"/><path d="M18 3C12 7 12 17 6 21"/><path d="M8 7h8M7 12h10M8 17h8"/></svg></div>
         <div class="service-title">Family Planning</div>
         <p class="service-desc">Non-judgmental guidance on contraception options, family spacing, and fertility awareness to help you make informed decisions for your family.</p>
         <div class="service-meta">
@@ -564,7 +574,7 @@
       </div>
 
       <div class="service-card reveal" style="transition-delay:.16s">
-        <div class="service-icon">💊</div>
+        <div class="service-icon"><svg class="ui-icon" viewBox="0 0 24 24"><path d="m10.5 20.5 10-10a5 5 0 0 0-7-7l-10 10a5 5 0 0 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg></div>
         <div class="service-title">Chronic Disease Management</div>
         <p class="service-desc">Ongoing support for managing hypertension and diabetes. Understanding your condition, medications, lifestyle changes, and monitoring strategies.</p>
         <div class="service-meta">
@@ -574,7 +584,7 @@
       </div>
 
       <div class="service-card reveal" style="transition-delay:.20s">
-        <div class="service-icon">🥗</div>
+        <div class="service-icon"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 4 13V8h5a7 7 0 0 1 7 7v5h-5Z"/><path d="M8 8c8 0 10 6 10 12"/><path d="M17 7c.5-2 2-3 4-3-.1 3-1.7 5-4 5"/></svg></div>
         <div class="service-title">Nutrition & Lifestyle Counselling</div>
         <p class="service-desc">Practical, culturally relevant nutrition advice and lifestyle coaching to support your health goals during pregnancy, postpartum, or everyday living.</p>
         <div class="service-meta">
@@ -584,7 +594,7 @@
       </div>
 
       <div class="service-card reveal" style="transition-delay:.24s">
-        <div class="service-icon">📚</div>
+        <div class="service-icon"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15Z"/></svg></div>
         <div class="service-title">Health Education Sessions</div>
         <p class="service-desc">Private couple sessions or family consultations on health topics that matters to you.</p>
         <div class="service-meta">
@@ -597,7 +607,7 @@
       <div class="service-card mental-health-card reveal" style="transition-delay:.28s">
         <div style="display:flex; align-items:flex-start; gap:16px; flex-wrap:wrap;">
           <div>
-            <div class="service-icon" style="background: linear-gradient(135deg,#e8eeff,#ddf0fb); font-size:1.5rem; margin-bottom:0;">🧠</div>
+            <div class="service-icon" style="background: linear-gradient(135deg,#e8eeff,#ddf0fb); font-size:1.5rem; margin-bottom:0; color:#4a6cf7;"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M9 3a3 3 0 0 0-3 3v1a4 4 0 0 0-2 7 4 4 0 0 0 4 6h1V3Z"/><path d="M15 3a3 3 0 0 1 3 3v1a4 4 0 0 1 2 7 4 4 0 0 1-4 6h-1V3Z"/><path d="M9 8H7m8 0h2M9 14H6m9 0h3"/></svg></div>
           </div>
           <div style="flex:1; min-width:200px;">
             <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
@@ -612,18 +622,18 @@
 
         <div class="mh-grid">
           <div class="mh-col">
-            <div class="mh-col-title">✅ What to expect</div>
-            <div class="mh-point">💬 Speak freely in a safe space</div>
-            <div class="mh-point">🎧 Be heard &amp; understood</div>
-            <div class="mh-point">💡 Gain clarity &amp; insight</div>
-            <div class="mh-point">🧭 Leave with direction</div>
+            <div class="mh-col-title"><svg class="ui-icon" viewBox="0 0 24 24"><path d="m20 6-11 11-5-5"/></svg> What to expect</div>
+            <div class="mh-point"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"/></svg> Speak freely in a safe space</div>
+            <div class="mh-point"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 18a6 6 0 0 0 6-6V8a6 6 0 0 0-12 0v4a6 6 0 0 0 6 6Z"/><path d="M4 12v1a8 8 0 0 0 16 0v-1"/></svg> Be heard &amp; understood</div>
+            <div class="mh-point"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.4-2.5A5 5 0 1 0 8.6 12c.7.8 1.2 1.5 1.4 2.5"/><path d="M9 18h6M10 22h4"/></svg> Gain clarity &amp; insight</div>
+            <div class="mh-point"><svg class="ui-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 8-3 8-5-5 8-3Z"/></svg> Leave with direction</div>
           </div>
           <div class="mh-divider"></div>
           <div class="mh-col">
-            <div class="mh-col-title" style="color:var(--teal);">✔ It is</div>
+            <div class="mh-col-title" style="color:var(--teal);"><svg class="ui-icon" viewBox="0 0 24 24"><path d="m20 6-11 11-5-5"/></svg> It is</div>
             <div class="mh-point">Supportive conversations</div>
             <div class="mh-point">Personal growth guidance</div>
-            <div class="mh-col-title" style="color:#c0392b; margin-top:10px;">✘ It is not</div>
+            <div class="mh-col-title" style="color:#c0392b; margin-top:10px;"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg> It is not</div>
             <div class="mh-point" style="color:var(--text-light);">Clinical diagnosis</div>
             <div class="mh-point" style="color:var(--text-light);">Medical treatment</div>
           </div>
@@ -642,31 +652,31 @@
         <div class="pricing-tier-name">Quick Consultation</div>
         <div class="pricing-tier-price">₦5,000</div>
         <div class="pricing-tier-old">₦15,000</div>
-        <div style="font-size:.78rem; opacity:.75; margin-top:6px;">💰 Save ₦10,000 (67% off)</div>
+        <div class="save-note"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M19 5c-1.5 0-2.8.4-4 1.2A7 7 0 0 0 4 12c0 4 3.5 7 8 7h7a1 1 0 0 0 1-1v-7c0-2.2-.7-4.2-1-6Z"/><path d="M8 13h5a2 2 0 0 0 0-4h-2a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4H8"/></svg> Save ₦10,000 (67% off)</div>
         <div class="pricing-tier-detail">15 minutes · Single session</div>
       </div>
       <div class="pricing-tier">
         <div class="pricing-tier-name">Extended / Follow-up</div>
         <div class="pricing-tier-price">₦12,000</div>
         <div class="pricing-tier-old">₦45,000</div>
-        <div style="font-size:.78rem; opacity:.75; margin-top:6px;">💰 Save ₦33,000 (73% off)</div>
+        <div class="save-note"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M19 5c-1.5 0-2.8.4-4 1.2A7 7 0 0 0 4 12c0 4 3.5 7 8 7h7a1 1 0 0 0 1-1v-7c0-2.2-.7-4.2-1-6Z"/><path d="M8 13h5a2 2 0 0 0 0-4h-2a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4H8"/></svg> Save ₦33,000 (73% off)</div>
         <div class="pricing-tier-detail">3 sessions · Best value</div>
       </div>
       <div class="pricing-tier">
         <div class="pricing-tier-name">Health Education (Group)</div>
         <div class="pricing-tier-price">₦12,000</div>
         <div class="pricing-tier-old">₦45,000</div>
-        <div style="font-size:.78rem; opacity:.75; margin-top:6px;">💰 Save ₦33,000 (73% off)</div>
+        <div class="save-note"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M19 5c-1.5 0-2.8.4-4 1.2A7 7 0 0 0 4 12c0 4 3.5 7 8 7h7a1 1 0 0 0 1-1v-7c0-2.2-.7-4.2-1-6Z"/><path d="M8 13h5a2 2 0 0 0 0-4h-2a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4H8"/></svg> Save ₦33,000 (73% off)</div>
         <div class="pricing-tier-detail">Best value</div>
       </div>
     </div>
 
     <div class="consult-strip reveal" style="transition-delay:.15s">
-      <span class="consult-strip-text">📱 All sessions held via:</span>
+      <span class="consult-strip-text"><svg class="ui-icon" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg> All sessions held via:</span>
       <div class="consult-types">
-        <span class="consult-pill">💬 WhatsApp Chat</span>
-        <span class="consult-pill">🎥 WhatsApp / Zoom Video</span>
-        <span class="consult-pill">📞 Phone Call</span>
+        <span class="consult-pill"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"/></svg> WhatsApp Chat</span>
+        <span class="consult-pill"><svg class="ui-icon" viewBox="0 0 24 24"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/></svg> WhatsApp / Zoom Video</span>
+        <span class="consult-pill"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg> Phone Call</span>
       </div>
     </div>
   </div>
@@ -688,7 +698,9 @@
     </div>
     <div class="testi-grid">
       <div class="testi-card reveal" style="transition-delay:.05s">
-        <div class="testi-stars">★★★★★</div>
+        <div class="testi-stars" aria-label="5 out of 5 stars">
+          <svg class="ui-icon-fill" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1L12 2Z"/></svg><svg class="ui-icon-fill" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1L12 2Z"/></svg><svg class="ui-icon-fill" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1L12 2Z"/></svg><svg class="ui-icon-fill" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1L12 2Z"/></svg><svg class="ui-icon-fill" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1L12 2Z"/></svg>
+        </div>
         <p class="testi-text">"Nurse Hassanat explained my family planning options so clearly, no judgment, no rushing. I finally understood my choices. Would 100% recommend to any woman."</p>
         <div class="testi-author">
           <div class="testi-avatar">AK</div>
@@ -699,7 +711,9 @@
         </div>
       </div>
       <div class="testi-card reveal" style="transition-delay:.1s">
-        <div class="testi-stars">★★★★★</div>
+        <div class="testi-stars" aria-label="5 out of 5 stars">
+          <svg class="ui-icon-fill" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1L12 2Z"/></svg><svg class="ui-icon-fill" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1L12 2Z"/></svg><svg class="ui-icon-fill" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1L12 2Z"/></svg><svg class="ui-icon-fill" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1L12 2Z"/></svg><svg class="ui-icon-fill" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1L12 2Z"/></svg>
+        </div>
         <p class="testi-text">"I was nervous about my postnatal recovery but Nurse Hassanat was so calm and thorough. She answered every question patiently. The virtual session felt just as good as in-person."</p>
         <div class="testi-author">
           <div class="testi-avatar">FM</div>
@@ -710,7 +724,9 @@
         </div>
       </div>
       <div class="testi-card reveal" style="transition-delay:.15s">
-        <div class="testi-stars">★★★★★</div>
+        <div class="testi-stars" aria-label="5 out of 5 stars">
+          <svg class="ui-icon-fill" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1L12 2Z"/></svg><svg class="ui-icon-fill" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1L12 2Z"/></svg><svg class="ui-icon-fill" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1L12 2Z"/></svg><svg class="ui-icon-fill" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1L12 2Z"/></svg><svg class="ui-icon-fill" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1L12 2Z"/></svg>
+        </div>
         <p class="testi-text">"She helped me understand my husband's diabetes better than our doctor ever did. She explains things in simple Yoruba-friendly English and actually cares. Very professional!"</p>
         <div class="testi-author">
           <div class="testi-avatar">RO</div>
@@ -796,7 +812,7 @@
         </a>
 
         <div class="info-card">
-          <div class="info-card-icon green">🕐</div>
+          <div class="info-card-icon green"><svg class="ui-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
           <div>
             <div class="info-card-title">Availability</div>
             <div class="info-card-text">Mon – Fri: 9:00am – 2:00pm WAT<br>Sat – Sun: 4:00pm – 6:00pm WAT</div>
@@ -804,23 +820,23 @@
         </div>
 
         <div class="payment-box">
-          <div class="payment-box-title">💳 Payment Methods</div>
+          <div class="payment-box-title"><svg class="ui-icon" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></svg> Payment Methods</div>
           <div style="margin-bottom: 14px;">
-            <div style="font-weight:600; font-size:.85rem; color:var(--text); margin-bottom:8px;">🏦 Bank Transfer (GTBank)</div>
+            <div style="font-weight:600; font-size:.85rem; color:var(--text); margin-bottom:8px; display:flex; align-items:center; gap:6px;"><svg class="ui-icon" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg> Bank Transfer (GTBank)</div>
             <div class="payment-row"><span>Account No.</span><span>0463760762</span></div>
             <div class="payment-row"><span>Name</span><span>Suleyman Hassan Hassanat</span></div>
           </div>
           <div style="border-top: 1px solid var(--mint-mid); padding-top: 12px;">
-            <div style="font-weight:600; font-size:.85rem; color:var(--text); margin-bottom:8px;">💳 Paystack Online Payment</div>
+            <div style="font-weight:600; font-size:.85rem; color:var(--text); margin-bottom:8px; display:flex; align-items:center; gap:6px;"><svg class="ui-icon" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></svg> Paystack Online Payment</div>
             <div style="font-size:.78rem; color:var(--text-light);">Quick and secure online payment. Use the "Pay with Paystack" button above.</div>
           </div>
           <div style="margin-top:10px; font-size:.78rem; color:var(--text-light); background:var(--mint); padding:8px 10px; border-radius:8px;">
-            💡 Payment is required before your session begins.
+            <svg class="ui-icon" viewBox="0 0 24 24" style="vertical-align:-.15em; color:var(--teal); margin-right:4px;"><path d="M15 14c.2-1 .7-1.7 1.4-2.5A5 5 0 1 0 8.6 12c.7.8 1.2 1.5 1.4 2.5"/><path d="M9 18h6M10 22h4"/></svg> Payment is required before your session begins.
           </div>
         </div>
 
         <div class="info-card">
-          <div class="info-card-icon amber">⚠️</div>
+          <div class="info-card-icon amber"><svg class="ui-icon" viewBox="0 0 24 24"><path d="m21.7 18-9-16a2 2 0 0 0-3.4 0l-9 16A2 2 0 0 0 2 21h20a2 2 0 0 0 1.7-3Z"/><path d="M12 9v4M12 17h.01"/></svg></div>
           <div>
             <div class="info-card-title">Cancellation Policy</div>
             <div class="info-card-text">Cancel at least <strong>24 hours before</strong> your session, or your deposit will be forfeited.</div>
@@ -828,7 +844,7 @@
         </div>
 
         <div class="info-card">
-          <div class="info-card-icon blue">🌍</div>
+          <div class="info-card-icon blue"><svg class="ui-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/></svg></div>
           <div>
             <div class="info-card-title">Available Nationwide</div>
             <div class="info-card-text">Based in Ilorin, Kwara State. All sessions are fully virtual — book from anywhere in the world.</div>
@@ -850,35 +866,35 @@
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
           Can I book if I'm not in Ilorin?
-          <span class="faq-chevron">▼</span>
+          <span class="faq-chevron"><svg class="ui-icon" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
         </button>
         <div class="faq-a"><div class="faq-a-inner">Absolutely! All sessions are 100% online via WhatsApp, Zoom, or phone. You can book from anywhere in Nigeria — and even abroad.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
           What if I need a prescription?
-          <span class="faq-chevron">▼</span>
+          <span class="faq-chevron"><svg class="ui-icon" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
         </button>
         <div class="faq-a"><div class="faq-a-inner">Nurse Hassanat provides professional health guidance and education, not prescriptions. If you require medication or a diagnosis, she will refer you to an appropriate doctor. Your safety always comes first.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
           How do I pay?
-          <span class="faq-chevron">▼</span>
+          <span class="faq-chevron"><svg class="ui-icon" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
         </button>
         <div class="faq-a"><div class="faq-a-inner">Payment is via bank transfer to GTBank (0463760762 — Suleyman Hassan Hassanat) or via Paystack. Payment is required before your session begins.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
           What happens after I book?
-          <span class="faq-chevron">▼</span>
+          <span class="faq-chevron"><svg class="ui-icon" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
         </button>
         <div class="faq-a"><div class="faq-a-inner">Once you send your booking via WhatsApp, Nurse Hassanat will confirm your session time, share payment details, and send a reminder before your appointment.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
           Is my consultation private and confidential?
-          <span class="faq-chevron">▼</span>
+          <span class="faq-chevron"><svg class="ui-icon" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
         </button>
         <div class="faq-a"><div class="faq-a-inner">Yes, completely. All consultations are strictly confidential. Your health information is never shared with third parties without your consent.</div></div>
       </div>
@@ -899,10 +915,10 @@
     <div class="about-inner">
       <div class="about-photo-wrap reveal">
         <div class="about-photo">
-          <img src="/hassana1.png" alt="Nurse Hassanat Hassan Sulayman" />
+          <img src="hassana1.png" alt="Nurse Hassanat Hassan Sulayman" />
         </div>
         <div class="about-badge">
-          <span class="badge-icon">🏅</span>
+          <span class="badge-icon"><svg class="ui-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/></svg></span>
           <div>
             <div class="badge-text-label">Licensed Nurse</div>
             <div class="badge-text-val">NMCN Registered</div>
@@ -921,20 +937,20 @@
         </p>
 
         <div class="specialty-tags">
-          <span class="specialty-tag">🌸 Reproductive Health</span>
-          <span class="specialty-tag">🌍 Public Health</span>
-          <span class="specialty-tag">🤱 Maternal &amp; Child Health</span>
-          <span class="specialty-tag">🧬 Family Planning</span>
-          <span class="specialty-tag">💊 Lifestyle Disease Prevention</span>
+          <span class="specialty-tag"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg> Reproductive Health</span>
+          <span class="specialty-tag"><svg class="ui-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/></svg> Public Health</span>
+          <span class="specialty-tag"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M8 3.13a4 4 0 0 0 0 7.75"/><path d="M12 14a4 4 0 0 0-4 4v3h8v-3a4 4 0 0 0-4-4Z"/><path d="M12 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg> Maternal &amp; Child Health</span>
+          <span class="specialty-tag"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M6 3c6 4 6 14 12 18"/><path d="M18 3C12 7 12 17 6 21"/><path d="M8 7h8M7 12h10M8 17h8"/></svg> Family Planning</span>
+          <span class="specialty-tag"><svg class="ui-icon" viewBox="0 0 24 24"><path d="m10.5 20.5 10-10a5 5 0 0 0-7-7l-10 10a5 5 0 0 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg> Lifestyle Disease Prevention</span>
         </div>
 
         <div class="creds-grid">
-          <div class="cred-item"><span class="cred-icon">🏅</span><span class="cred-text">NMCN Registered</span></div>
-          <div class="cred-item"><span class="cred-icon">📍</span><span class="cred-text">Ilorin, Kwara State</span></div>
-          <div class="cred-item"><span class="cred-icon">⏱️</span><span class="cred-text">4+ Years Practice</span></div>
-          <div class="cred-item"><span class="cred-icon">💻</span><span class="cred-text">Telenursing Practice</span></div>
-          <div class="cred-item"><span class="cred-icon">🌍</span><span class="cred-text">Worldwide Available</span></div>
-          <div class="cred-item"><span class="cred-icon">🎓</span><span class="cred-text">Public Health Focus</span></div>
+          <div class="cred-item"><span class="cred-icon"><svg class="ui-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/></svg></span><span class="cred-text">NMCN Registered</span></div>
+          <div class="cred-item"><span class="cred-icon"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><span class="cred-text">Ilorin, Kwara State</span></div>
+          <div class="cred-item"><span class="cred-icon"><svg class="ui-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><span class="cred-text">4+ Years Practice</span></div>
+          <div class="cred-item"><span class="cred-icon"><svg class="ui-icon" viewBox="0 0 24 24"><rect width="18" height="12" x="3" y="4" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span><span class="cred-text">Telenursing Practice</span></div>
+          <div class="cred-item"><span class="cred-icon"><svg class="ui-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/></svg></span><span class="cred-text">Worldwide Available</span></div>
+          <div class="cred-item"><span class="cred-icon"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span><span class="cred-text">Public Health Focus</span></div>
         </div>
       </div>
     </div>
@@ -963,15 +979,15 @@
       </div>
       <div>
         <div class="footer-col-title">Payment</div>
-        <div class="footer-col-item">🏦 GTBank</div>
+        <div class="footer-col-item"><svg class="ui-icon" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg> GTBank</div>
         <div class="footer-col-item">0463760762</div>
         <div class="footer-col-item" style="font-size:.76rem; opacity:.5;">Suleyman Hassan Hassanat</div>
-        <div class="footer-col-item" style="margin-top:8px;">💳 Paystack also accepted</div>
+        <div class="footer-col-item" style="margin-top:8px;"><svg class="ui-icon" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></svg> Paystack also accepted</div>
       </div>
     </div>
     <div class="footer-bottom">
       <div class="footer-disclaimer">
-        ⚠️ <strong>Not for emergencies.</strong> This service provides health education and guidance only — not diagnosis or prescription. If you are experiencing a medical emergency, please go to your nearest hospital or emergency room immediately.
+        <svg class="ui-icon" viewBox="0 0 24 24" style="vertical-align:-.15em; margin-right:4px;"><path d="m21.7 18-9-16a2 2 0 0 0-3.4 0l-9 16A2 2 0 0 0 2 21h20a2 2 0 0 0 1.7-3Z"/><path d="M12 9v4M12 17h.01"/></svg><strong>Not for emergencies.</strong> This service provides health education and guidance only — not diagnosis or prescription. If you are experiencing a medical emergency, please go to your nearest hospital or emergency room immediately.
       </div>
       <div class="footer-copy">© 2025 Nurse Hassanat Hassan Sulayman</div>
     </div>
@@ -1000,13 +1016,13 @@
     }
 
     const msg =
-      `Hi Nurse Hassanat! 👋\n\nI'd like to book a consultation.\n\n` +
+      `Hi Nurse Hassanat!\n\nI'd like to book a consultation.\n\n` +
       `*Name:* ${name}\n` +
       `*Phone:* ${phone}\n` +
       `*Service:* ${service}\n` +
       `*Consultation type:* ${type}\n` +
       `*Provider preference:* ${gender}\n\n` +
-      `Please let me know your available slots. Thank you! 🙏`;
+      `Please let me know your available slots. Thank you!`;
 
     window.open(`https://wa.me/2347018824561?text=${encodeURIComponent(msg)}`, '_blank');
   }
@@ -1049,14 +1065,14 @@
       onSuccess: function(response) {
         // Send confirmation to WhatsApp
         const confirmMsg =
-          `Hi Nurse Hassanat! 🎉\n\nI've just made a payment for my consultation via Paystack.\n\n` +
+          `Hi Nurse Hassanat!\n\nI've just made a payment for my consultation via Paystack.\n\n` +
           `*Name:* ${name}\n` +
           `*Phone:* ${phone}\n` +
           `*Service:* ${service}\n` +
           `*Consultation type:* ${type}\n` +
           `*Provider preference:* ${gender}\n` +
           `*Payment Reference:* ${response.reference}\n\n` +
-          `Please confirm my booking. Thank you! 🙏`;
+          `Please confirm my booking. Thank you!`;
         
         window.open(`https://wa.me/2347018824561?text=${encodeURIComponent(confirmMsg)}`, '_blank');
         alert('Payment successful! Please confirm your booking on WhatsApp.');
