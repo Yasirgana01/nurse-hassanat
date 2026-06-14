@@ -402,13 +402,30 @@
       display: grid; grid-template-columns: 1fr; gap: 28px; margin-bottom: 32px;
       padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,.08);
     }
-    @media (min-width: 640px) { .footer-top { grid-template-columns: 1.5fr 1fr 1fr; } }
+    @media (min-width: 640px) { .footer-top { grid-template-columns: 1.35fr .9fr .95fr 1.35fr; } }
     .footer-brand { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: white; margin-bottom: 8px; }
     .footer-sub { font-size: .8rem; opacity: .55; line-height: 1.55; }
     .footer-col-title { font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; opacity: .45; margin-bottom: 12px; }
     .footer-col-item { font-size: .82rem; margin-bottom: 7px; opacity: .65; display: flex; align-items: center; gap: 7px; }
     .footer-col-item a { color: inherit; text-decoration: none; }
     .footer-col-item a:hover { opacity: 1; color: var(--mint); }
+    .footer-policy-toggle {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: transparent; border: 0; padding: 0; margin: 0 0 12px;
+      color: inherit; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; font-size: .75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .1em; opacity: .45;
+    }
+    .footer-policy-toggle:hover,
+    .footer-policy-toggle:focus-visible { opacity: .9; color: var(--mint); outline: none; }
+    .footer-policy-toggle .ui-icon { transition: transform .2s; }
+    .footer-policy-toggle[aria-expanded="true"] .ui-icon { transform: rotate(180deg); }
+    .footer-privacy {
+      font-size: .78rem; line-height: 1.62; opacity: .62;
+      max-width: 340px;
+    }
+    .footer-privacy[hidden] { display: none; }
+    .footer-privacy strong { color: white; font-weight: 600; }
     .footer-wa {
       display: inline-flex; align-items: center; gap: 8px; margin-top: 4px;
       background: var(--wa-green); color: white; text-decoration: none;
@@ -494,7 +511,7 @@
           Your health guide,<br>wherever you are
         </h1>
         <p class="hero-sub">
-          Reproductive health, maternal &amp; child care, family planning, and chronic disease support, all from your phone. No travel or physical visits needed.
+          Chronic disease support, Mental Health Support, Maternal &amp; child care, family planning, and Reproductive Health, all from your phone. No travel or physical visits needed.
         </p>
         <div class="hero-actions">
           <a href="#booking" class="btn-primary">
@@ -930,17 +947,17 @@
         <span class="section-label">About Nurse Hassanat</span>
         <h2 class="section-title">Making health accessible to every Nigerian</h2>
         <p class="about-bio">
-          Hi, I'm <strong>Nurse Hassanat Hassan Sulayman</strong>, a registered nurse with <strong>4+ years of experience</strong> in reproductive health, maternal &amp; child care, and public health. I'm based in Ilorin, Kwara State, and I work independently through telenursing.
+          Hi, I'm <strong>Nurse Hassanat Hassan Sulayman</strong>, a registered nurse with <strong>4+ years of experience</strong> in public health, maternal &amp; child care, and reproductive health. I'm based in Ilorin, Kwara State, and I work independently through telenursing.
         </p>
         <p class="about-bio">
-          What I love most about nursing is <strong>educating people and making health information accessible to everyday Nigerians</strong>. Health knowledge shouldn't be locked behind hospital walls, it should be available to every woman, every mother, every family. That's why I moved online.
+          What I love most about nursing is <strong>educating people and making health information accessible to everyone</strong>. Health knowledge shouldn't be locked behind hospital walls, it should be available to every person, every family. That's why I moved online.
         </p>
 
         <div class="specialty-tags">
-          <span class="specialty-tag"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg> Reproductive Health</span>
           <span class="specialty-tag"><svg class="ui-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/></svg> Public Health</span>
-          <span class="specialty-tag"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M8 3.13a4 4 0 0 0 0 7.75"/><path d="M12 14a4 4 0 0 0-4 4v3h8v-3a4 4 0 0 0-4-4Z"/><path d="M12 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg> Maternal &amp; Child Health</span>
           <span class="specialty-tag"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M6 3c6 4 6 14 12 18"/><path d="M18 3C12 7 12 17 6 21"/><path d="M8 7h8M7 12h10M8 17h8"/></svg> Family Planning</span>
+          <span class="specialty-tag"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M8 3.13a4 4 0 0 0 0 7.75"/><path d="M12 14a4 4 0 0 0-4 4v3h8v-3a4 4 0 0 0-4-4Z"/><path d="M12 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg> Maternal &amp; Child Health</span>
+          <span class="specialty-tag"><svg class="ui-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg> Reproductive Health</span>
           <span class="specialty-tag"><svg class="ui-icon" viewBox="0 0 24 24"><path d="m10.5 20.5 10-10a5 5 0 0 0-7-7l-10 10a5 5 0 0 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg> Lifestyle Disease Prevention</span>
         </div>
 
@@ -983,6 +1000,15 @@
         <div class="footer-col-item">0463760762</div>
         <div class="footer-col-item" style="font-size:.76rem; opacity:.5;">Suleyman Hassan Hassanat</div>
         <div class="footer-col-item" style="margin-top:8px;"><svg class="ui-icon" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></svg> Paystack also accepted</div>
+      </div>
+      <div>
+        <button class="footer-policy-toggle" type="button" aria-expanded="false" aria-controls="footer-privacy" onclick="togglePrivacyPolicy(this)">
+          Privacy Policy
+          <svg class="ui-icon" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <p class="footer-privacy" id="footer-privacy" hidden>
+          <strong>Your privacy is respected.</strong> Information you share through the booking form, WhatsApp, phone, Zoom, or payment channels is used only to arrange your consultation, provide health education, confirm payment, and follow up on your care. Your personal and health details are kept confidential and are not sold or shared for marketing. Limited details may be shared only when required by law, with your consent, or when needed to protect your safety. Paystack and WhatsApp process their own service data under their privacy terms.
+        </p>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1087,6 +1113,14 @@
     const isOpen = item.classList.contains('open');
     document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
+  }
+
+  // Footer privacy policy toggle
+  function togglePrivacyPolicy(btn) {
+    const policy = document.getElementById(btn.getAttribute('aria-controls'));
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    policy.hidden = isOpen;
   }
 
   // Scroll reveal
