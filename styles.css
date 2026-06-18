@@ -367,10 +367,28 @@
     .calendar-day.is-unavailable { background: #fff4f0; border-color: #f1c4b6; }
     .calendar-day.is-selected { outline: 3px solid rgba(47,158,126,.18); border-color: var(--teal); }
     .day-number { font-weight: 700; font-size: .92rem; }
+    .day-details { display: block; min-width: 0; width: 100%; }
     .day-status { display: block; font-size: .68rem; font-weight: 700; line-height: 1.25; color: var(--text-light); }
     .is-available .day-status { color: var(--teal-dark); }
     .is-unavailable .day-status { color: #b34b36; }
-    .day-times { display: block; margin-top: 2px; font-size: .62rem; color: var(--text-light); line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .day-times {
+      display: block; width: 100%; min-width: 0; margin-top: 2px;
+      font-size: .62rem; color: var(--text-light); line-height: 1.25;
+      white-space: normal; overflow-wrap: break-word;
+    }
+    @media (max-width: 479px) {
+      .calendar-panel { padding: 14px 10px; }
+      .calendar-weekdays,
+      .calendar-grid { gap: 3px; }
+      .weekday { font-size: .6rem; letter-spacing: 0; }
+      .calendar-day {
+        min-width: 0; min-height: 76px; padding: 7px 4px;
+        border-radius: 8px; gap: 4px; overflow: hidden;
+      }
+      .day-number { font-size: .8rem; }
+      .day-status { font-size: .58rem; }
+      .day-times { font-size: .55rem; line-height: 1.15; }
+    }
     .calendar-legend { display: flex; flex-wrap: wrap; gap: 10px 16px; margin-top: 16px; color: var(--text-light); font-size: .78rem; }
     .legend-item { display: inline-flex; align-items: center; gap: 7px; }
     .legend-dot { width: 12px; height: 12px; border-radius: 50%; border: 1px solid transparent; }

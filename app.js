@@ -163,7 +163,7 @@
       if (key < todayKey) button.classList.add('is-past');
       if (key === selectedAvailabilityDate) button.classList.add('is-selected');
       button.setAttribute('aria-label', `${formatDisplayDate(key)} is ${status.replace('-', ' ')}`);
-      button.innerHTML = `<span class="day-number">${day}</span><span><span class="day-status">${status === 'available' ? 'Open' : 'Closed'}</span>${timePreview ? `<span class="day-times">${escapeHtml(timePreview)}</span>` : ''}</span>`;
+      button.innerHTML = `<span class="day-number">${day}</span><span class="day-details"><span class="day-status">${status === 'available' ? 'Open' : 'Closed'}</span>${timePreview ? `<span class="day-times">${escapeHtml(timePreview)}</span>` : ''}</span>`;
       button.addEventListener('click', () => selectAvailabilityDate(key, entry));
       grid.appendChild(button);
     }
