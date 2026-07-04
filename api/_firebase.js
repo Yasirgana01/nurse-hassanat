@@ -18,7 +18,7 @@ function getServiceAccount() {
   return {
     projectId: cleanEnv(getRequiredEnv('FIREBASE_PROJECT_ID')),
     clientEmail: cleanEnv(getRequiredEnv('FIREBASE_CLIENT_EMAIL')),
-    privateKey: getRequiredEnv('FIREBASE_PRIVATE_KEY').replace(/\\n/g, '\n'),
+    privateKey: cleanEnv(getRequiredEnv('FIREBASE_PRIVATE_KEY')).replace(/\\n/g, '\n'),
   };
 }
 
