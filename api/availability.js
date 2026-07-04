@@ -1,26 +1,13 @@
 const {
-  getRequiredEnv,
   json,
   methodNotAllowed,
   readJson,
   requireAdmin,
   requireSameOrigin,
 } = require('./_security');
+const { getDatabase } = require('./_firebase');
 
-const TABLE = 'nurse_availability';
-
-function getSupabaseHeaders() {
-  const key = getRequiredEnv('SUPABASE_SERVICE_ROLE_KEY');
-  return {
-    apikey: key,
-    Authorization: `Bearer ${key}`,
-    'Content-Type': 'application/json',
-  };
-}
-
-function getSupabaseUrl(path = '') {
-  return `${getRequiredEnv('SUPABASE_URL').replace(/\/$/, '')}/rest/v1/${TABLE}${path}`;
-}
+const COLLECTION = 'nurse_availability';
 
 function isValidStatus(status) {
   return status === 'available' || status === 'unavailable';
@@ -35,13 +22,9 @@ function normalizeTimeSlots(value) {
 }
 
 async function getAvailability(res) {
-  const response = await fetch(getSupabaseUrl('?select=date,status,time_slots&order=date.asc'), {
-    headers: getSupabaseHeaders(),
-  });
-
-  if (!response.ok) return json(res, response.status, { error: 'Unable to load availability' });
-  const data = await response.json();
-  return json(res, 200, { availability: data });
+  const snapshot = await getDatabase().collection(COLLECTION).orderBy('date').get();
+  const availability = snapshot.docs.map((document) => document.data());
+  return json(res, 200, { availability });
 }
 
 async function saveAvailability(req, res) {
@@ -54,46 +37,42 @@ async function saveAvailability(req, res) {
   if (!isValidStatus(body.status)) return json(res, 400, { error: 'Invalid status' });
 
   const timeSlots = body.status === 'available' ? normalizeTimeSlots(body.timeSlots) : [];
-  const response = await fetch(getSupabaseUrl('?on_conflict=date'), {
-    method: 'POST',
-    headers: {
-      ...getSupabaseHeaders(),
-      Prefer: 'resolution=merge-duplicates,return=representation',
-    },
-    body: JSON.stringify({
-      date: body.date,
-      status: body.status,
-      time_slots: timeSlots,
-    }),
-  });
+  const availability = {
+    date: body.date,
+    status: body.status,
+    time_slots: timeSlots,
+    updated_at: new Date().toISOString(),
+  };
+  await getDatabase().collection(COLLECTION).doc(body.date).set(availability);
+  return json(res, 200, { availability });
+}
 
-  if (!response.ok) return json(res, response.status, { error: 'Unable to save availability' });
-  const data = await response.json();
-  return json(res, 200, { availability: data[0] || null });
+async function deleteCollection(collection) {
+  let snapshot = await collection.limit(400).get();
+  while (!snapshot.empty) {
+    const batch = collection.firestore.batch();
+    snapshot.docs.forEach((document) => batch.delete(document.ref));
+    await batch.commit();
+    snapshot = await collection.limit(400).get();
+  }
 }
 
 async function deleteAvailability(req, res) {
   if (!requireAdmin(req, res)) return;
 
   const body = await readJson(req);
-  let path = '';
+  const collection = getDatabase().collection(COLLECTION);
   if (body.resetAll) {
     if (body.confirmReset !== 'RESET_AVAILABILITY') {
       return json(res, 400, { error: 'Reset confirmation is required' });
     }
-    path = '?date=neq.0001-01-01';
+    await deleteCollection(collection);
   } else if (body.date && /^\d{4}-\d{2}-\d{2}$/.test(body.date)) {
-    path = `?date=eq.${encodeURIComponent(body.date)}`;
+    await collection.doc(body.date).delete();
   } else {
     return json(res, 400, { error: 'A valid date is required' });
   }
 
-  const response = await fetch(getSupabaseUrl(path), {
-    method: 'DELETE',
-    headers: getSupabaseHeaders(),
-  });
-
-  if (!response.ok) return json(res, response.status, { error: 'Unable to clear availability' });
   return json(res, 200, { ok: true });
 }
 
@@ -105,6 +84,7 @@ module.exports = async function handler(req, res) {
     if (req.method === 'DELETE') return deleteAvailability(req, res);
     return methodNotAllowed(res, ['GET', 'POST', 'DELETE']);
   } catch (error) {
+    console.error('Availability request failed', error);
     return json(res, 500, { error: 'Availability request failed' });
   }
 };
