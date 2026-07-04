@@ -1,5 +1,4 @@
-﻿const availabilityStorageKey = 'nurseHassanatAvailability';
-  let paystackPublicKey = '';
+const availabilityStorageKey = 'nurseHassanatAvailability';
   let availabilitySchedule = {};
   let displayedMonth = new Date();
   displayedMonth.setDate(1);
@@ -297,25 +296,14 @@
     return date === 'Flexible' ? date : formatDisplayDate(date);
   }
 
-  async function createBooking(details, payment = {}) {
+  async function createBooking(details) {
     const data = await apiRequest('/api/bookings', {
       method: 'POST',
-      body: JSON.stringify({
-        ...details,
-        paymentStatus: payment.status || 'pending',
-        paymentReference: payment.reference || '',
-      }),
+      body: JSON.stringify(details),
     });
     return data.booking;
   }
 
-  async function markBookingPaid(reference, paymentReference) {
-    const data = await apiRequest('/api/bookings', {
-      method: 'PATCH',
-      body: JSON.stringify({ reference, paymentReference }),
-    });
-    return data.booking;
-  }
 
   async function saveAvailabilityDate() {
     const adminDate = document.getElementById('admin-date');
@@ -420,81 +408,49 @@
     window.open(`https://wa.me/2347018824561?text=${encodeURIComponent(msg)}`, '_blank');
   }
 
-  // Paystack payment
+  // Paystack checkout is initialized server-side; no API credential reaches the browser.
   async function payWithPaystack() {
     const details = collectBookingDetails();
-
     if (!validateBookingDetails(details)) {
       alert('Please fill in all fields before proceeding to payment.');
       return;
     }
 
-    // Service prices mapping
-    const servicePrices = {
-      'Reproductive & Sexual Health Consultation': 5000,
-      'Antenatal / Postnatal Guidance': 5000,
-      'Family Planning Consultation': 5000,
-      'Chronic Disease Management (Hypertension/Diabetes)': 5000,
-      'Nutrition & Lifestyle Counselling': 5000,
-      'Health Education Session (Group)': 12000,
-      'Mental Health Session': 7000,
-      'General Health Q&A': 5000
-    };
-
-    const amount = servicePrices[details.service] || 5000;
-
-    if (!paystackPublicKey) {
-      alert('Online payment is not configured yet. Please use WhatsApp or bank transfer.');
-      return;
-    }
-
-    let pendingBooking;
     try {
-      pendingBooking = await createBooking(details);
+      const booking = await createBooking(details);
+      sessionStorage.setItem('pendingPaymentDetails', JSON.stringify({ ...details, bookingReference: booking.reference }));
+      const payment = await apiRequest('/api/initialize-payment', {
+        method: 'POST',
+        body: JSON.stringify({ bookingReference: booking.reference }),
+      });
+      window.location.assign(payment.authorizationUrl);
     } catch (error) {
       alert(error.message);
+    }
+  }
+
+  function handlePaymentReturn() {
+    const params = new URLSearchParams(window.location.search);
+    const status = params.get('payment');
+    if (!status) return;
+
+    const bookingReference = params.get('booking') || '';
+    const saved = sessionStorage.getItem('pendingPaymentDetails');
+    sessionStorage.removeItem('pendingPaymentDetails');
+    history.replaceState({}, '', window.location.pathname);
+
+    if (status !== 'success') {
+      alert('Payment could not be verified. Please try again or contact Nurse Hassanat.');
       return;
     }
 
-    const handler = PaystackPop.setup({
-      key: paystackPublicKey,
-      email: `${details.phone}@consultation.com`,
-      amount: amount * 100, // Amount in kobo
-      currency: 'NGN',
-      ref: 'NH-' + Math.floor((Math.random() * 1000000000) + 1),
-      onClose: function() {
-        alert('Payment window closed.');
-      },
-      onSuccess: async function(response) {
-        try {
-          const verification = await apiRequest('/api/verify-payment', {
-            method: 'POST',
-            body: JSON.stringify({ reference: response.reference, service: details.service }),
-          });
-
-          const booking = await markBookingPaid(pendingBooking.reference, verification.reference);
-
-          const confirmMsg =
-            `Hi Nurse Hassanat!\n\nMy Paystack payment has been verified for my consultation.\n\n` +
-            `*Booking Reference:* ${booking.reference}\n` +
-            `*Name:* ${details.name}\n` +
-            `*Phone:* ${details.phone}\n` +
-            `*Service:* ${details.service}\n` +
-            `*Consultation type:* ${details.type}\n` +
-            `*Preferred date:* ${formatBookingDate(details.date)}\n` +
-            `*Preferred time:* ${details.time}\n` +
-            `*Provider preference:* ${details.gender}\n` +
-            `*Verified Payment Reference:* ${verification.reference}\n\n` +
-            `Please confirm my booking. Thank you!`;
-
-          window.open(`https://wa.me/2347018824561?text=${encodeURIComponent(confirmMsg)}`, '_blank');
-          alert('Payment verified! Please confirm your booking on WhatsApp.');
-        } catch (error) {
-          alert('Payment was received by Paystack but could not be verified here yet. Please contact Nurse Hassanat with your Paystack reference: ' + response.reference);
-        }
-      }
-    });
-    handler.openIframe();
+    let details = null;
+    try { details = saved ? JSON.parse(saved) : null; } catch (error) { details = null; }
+    const message = details
+      ? `Hi Nurse Hassanat!\n\nMy Paystack payment has been verified.\n\n*Booking Reference:* ${bookingReference}\n*Name:* ${details.name}\n*Phone:* ${details.phone}\n*Service:* ${details.service}\n\nPlease confirm my booking. Thank you!`
+      : `Hi Nurse Hassanat!\n\nMy Paystack payment has been verified.\n\n*Booking Reference:* ${bookingReference}\n\nPlease confirm my booking. Thank you!`;
+    window.open(`https://wa.me/2347018824561?text=${encodeURIComponent(message)}`, '_blank');
+    alert('Payment verified! Please confirm your booking on WhatsApp.');
   }
 
   // FAQ accordion
@@ -525,6 +481,7 @@
 
   async function initPage() {
     enableNurseModeFromUrl();
+    handlePaymentReturn();
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     document.getElementById('calendar-prev')?.addEventListener('click', () => changeCalendarMonth(-1));
     document.getElementById('calendar-next')?.addEventListener('click', () => changeCalendarMonth(1));
@@ -537,12 +494,6 @@
     document.getElementById('pay-paystack')?.addEventListener('click', payWithPaystack);
     document.querySelectorAll('.faq-q').forEach(btn => btn.addEventListener('click', () => toggleFaq(btn)));
     document.querySelectorAll('.footer-policy-toggle').forEach(btn => btn.addEventListener('click', () => toggleFooterDisclosure(btn)));
-    try {
-      const config = await apiRequest('/api/config');
-      paystackPublicKey = config.paystackPublicKey || '';
-    } catch (error) {
-      paystackPublicKey = '';
-    }
     await loadAvailabilitySchedule();
     await checkNurseSession();
     const bookingDate = document.getElementById('b-date');

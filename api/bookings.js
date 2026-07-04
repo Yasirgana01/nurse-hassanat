@@ -45,30 +45,12 @@ function validateBooking(body) {
 }
 
 module.exports = async function handler(req, res) {
-  if (req.method !== 'POST' && req.method !== 'PATCH') return methodNotAllowed(res, ['POST', 'PATCH']);
+  if (req.method !== 'POST') return methodNotAllowed(res, ['POST']);
   if (!requireSameOrigin(req, res)) return;
 
   try {
     const body = await readJson(req);
     const collection = getDatabase().collection(COLLECTION);
-
-    if (req.method === 'PATCH') {
-      const reference = cleanText(body.reference, 40);
-      const paymentReference = cleanText(body.paymentReference, 120);
-      if (!isValidBookingReference(reference)) return json(res, 400, { error: 'Invalid booking reference' });
-      if (!paymentReference) return json(res, 400, { error: 'Payment reference is required' });
-
-      const document = collection.doc(reference);
-      const snapshot = await document.get();
-      if (!snapshot.exists) return json(res, 404, { error: 'Booking not found' });
-      const payment = {
-        payment_status: 'paid',
-        payment_reference: paymentReference,
-        payment_verified_at: new Date().toISOString(),
-      };
-      await document.update(payment);
-      return json(res, 200, { booking: { ...snapshot.data(), ...payment } });
-    }
 
     const { booking, error } = validateBooking(body);
     if (error) return json(res, 400, { error });
@@ -78,9 +60,9 @@ module.exports = async function handler(req, res) {
       const record = {
         reference,
         ...booking,
-        payment_status: body.paymentStatus === 'paid' ? 'paid' : 'pending',
-        payment_reference: cleanText(body.paymentReference, 120) || null,
-        payment_verified_at: body.paymentStatus === 'paid' ? new Date().toISOString() : null,
+        payment_status: 'pending',
+        payment_reference: null,
+        payment_verified_at: null,
         created_at: new Date().toISOString(),
       };
       try {
