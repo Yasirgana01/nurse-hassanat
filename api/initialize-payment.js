@@ -1,6 +1,7 @@
 const { getDatabase } = require('./_firebase');
-const { json, methodNotAllowed, readJson, requireSameOrigin } = require('./_security');
+const { json, methodNotAllowed, readJson } = require('./_security');
 const { getExpectedAmount, paystackRequest } = require('./_paystack');
+const { guardPublicEndpoint } = require('./_request-guard');
 
 function getOrigin(req) {
   const host = req.headers['x-forwarded-host'] || req.headers.host;
@@ -9,8 +10,8 @@ function getOrigin(req) {
 }
 
 module.exports = async function handler(req, res) {
+  if (!(await guardPublicEndpoint(req, res, { endpoint: 'initialize-payment', limit: 10, windowSeconds: 600 }))) return;
   if (req.method !== 'POST') return methodNotAllowed(res, ['POST']);
-  if (!requireSameOrigin(req, res)) return;
 
   try {
     const body = await readJson(req);

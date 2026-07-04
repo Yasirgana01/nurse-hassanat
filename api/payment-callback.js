@@ -1,5 +1,6 @@
 const { getDatabase } = require('./_firebase');
 const { verifyTransaction } = require('./_paystack');
+const { guardPublicEndpoint } = require('./_request-guard');
 
 function redirect(res, location) {
   res.statusCode = 302;
@@ -9,6 +10,7 @@ function redirect(res, location) {
 }
 
 module.exports = async function handler(req, res) {
+  if (!(await guardPublicEndpoint(req, res, { endpoint: 'payment-callback', limit: 30, windowSeconds: 600 }))) return;
   if (req.method !== 'GET') {
     res.statusCode = 405;
     return res.end();

@@ -3,9 +3,9 @@ const {
   methodNotAllowed,
   readJson,
   requireAdmin,
-  requireSameOrigin,
 } = require('./_security');
 const { getDatabase } = require('./_firebase');
+const { guardPublicEndpoint } = require('./_request-guard');
 
 const COLLECTION = 'nurse_availability';
 
@@ -78,8 +78,11 @@ async function deleteAvailability(req, res) {
 
 module.exports = async function handler(req, res) {
   try {
+    const guardOptions = req.method === 'GET'
+      ? { endpoint: 'availability-read', limit: 120, windowSeconds: 60 }
+      : { endpoint: 'availability-write', limit: 30, windowSeconds: 300 };
+    if (!(await guardPublicEndpoint(req, res, guardOptions))) return;
     if (req.method === 'GET') return getAvailability(res);
-    if (!requireSameOrigin(req, res)) return;
     if (req.method === 'POST') return saveAvailability(req, res);
     if (req.method === 'DELETE') return deleteAvailability(req, res);
     return methodNotAllowed(res, ['GET', 'POST', 'DELETE']);

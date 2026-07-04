@@ -1,6 +1,7 @@
 const crypto = require('crypto');
-const { json, methodNotAllowed, readJson, requireSameOrigin } = require('./_security');
+const { json, methodNotAllowed, readJson } = require('./_security');
 const { getDatabase } = require('./_firebase');
+const { guardPublicEndpoint } = require('./_request-guard');
 
 const COLLECTION = 'bookings';
 const ALLOWED_SERVICES = new Set([
@@ -45,8 +46,8 @@ function validateBooking(body) {
 }
 
 module.exports = async function handler(req, res) {
+  if (!(await guardPublicEndpoint(req, res, { endpoint: 'bookings', limit: 10, windowSeconds: 600 }))) return;
   if (req.method !== 'POST') return methodNotAllowed(res, ['POST']);
-  if (!requireSameOrigin(req, res)) return;
 
   try {
     const body = await readJson(req);

@@ -3,12 +3,12 @@ const {
   json,
   methodNotAllowed,
   readJson,
-  requireSameOrigin,
   safeEqual,
   signToken,
   verifyToken,
 } = require('./_security');
 const { getDatabase } = require('./_firebase');
+const { guardPublicEndpoint } = require('./_request-guard');
 
 const MAX_ATTEMPTS = 8;
 const WINDOW_MINUTES = 15;
@@ -54,7 +54,7 @@ async function clearFailedAttempts(clientId) {
 }
 
 module.exports = async function handler(req, res) {
-  if (!requireSameOrigin(req, res)) return;
+  if (!(await guardPublicEndpoint(req, res, { endpoint: 'admin-login', limit: 30, windowSeconds: 300 }))) return;
   if (req.method === 'DELETE') {
     res.setHeader('Set-Cookie', 'nurse_admin_session=; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=0');
     return json(res, 200, { ok: true });

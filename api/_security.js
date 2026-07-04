@@ -12,15 +12,27 @@ function methodNotAllowed(res, allowed) {
   return json(res, 405, { error: 'Method not allowed' });
 }
 
-function requireSameOrigin(req, res) {
-  const origin = req.headers.origin;
-  if (!origin) return true;
+function getAllowedOrigin() {
+  const configured = String(process.env.APP_ORIGIN || '').replace(/^\uFEFF/, '').trim().replace(/\/$/, '');
+  if (configured) return configured;
+  if (process.env.NODE_ENV !== 'production') return 'http://localhost:3000';
+  throw new Error('Missing required environment variable: APP_ORIGIN');
+}
 
+function requireSameOrigin(req, res) {
+  const allowedOrigin = getAllowedOrigin();
+  const origin = String(req.headers.origin || '').replace(/\/$/, '');
   const host = req.headers['x-forwarded-host'] || req.headers.host;
   const proto = req.headers['x-forwarded-proto'] || 'https';
-  const expected = `${proto}://${host}`;
-  if (origin === expected) return true;
+  const requestOrigin = `${proto}://${host}`;
 
+  res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Vary', 'Origin');
+
+  if (requestOrigin === allowedOrigin && (!origin || origin === allowedOrigin)) return true;
   json(res, 403, { error: 'Forbidden origin' });
   return false;
 }
